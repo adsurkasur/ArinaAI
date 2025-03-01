@@ -18,7 +18,7 @@ Arina AI is an advanced AI companion designed to provide intelligent, engaging, 
 - **Python 3.9+**  
 - **Git**  
 - **Virtual Environment** (`venv`)  
-- **Ollama (for AI models)**  
+- **[Ollama](https://github.com/ollama/ollama) (for AI models)**  
 
 ### Setup Instructions  
 
@@ -26,25 +26,30 @@ Arina AI is an advanced AI companion designed to provide intelligent, engaging, 
    ```sh
    git clone https://github.com/adsurkasur/ArinaAI.git
    cd ArinaAI
+   ```
 
-2. **Create and Activate Virtual Environment:**
+2. **Create and Activate Virtual Environment:**  
    ```sh
-    python -m venv venv
-    source venv/bin/activate  # For macOS/Linux
-    venv\Scripts\activate      # For Windows
+   python -m venv venv
+   source venv/bin/activate  # For macOS/Linux
+   venv\Scripts\activate      # For Windows
+   ```
 
-3. **Install Dependencies:**
+3. **Install Dependencies:**  
    ```sh
-    pip install -r config/requirements.txt
+   pip install -r config/requirements.txt
+   ```
 
-4. **Run Arina AI:**
+4. **Download Your Own AI Model:**  
+   Arina requires a compatible AI model. Please download your own model using Ollama before running Arina.  
+
+5. **Run Arina AI:**  
    ```sh
-    git pull origin main
+   python main.py
+   ```
 
-## License
-This project is licensed under the Apache-2.0 License – see the LICENSE file for details.
+## License  
+This project is licensed under the Apache-2.0 License – see the LICENSE file for details.  
 
-## Developer Notes
-Arina AI is an evolving project! Contributions, feedback, and feature suggestions are always welcome. 😃🚀
-
-This README covers everything—features, installation, and how to update Arina! 😊
+## Developer Notes  
+Arina AI is an evolving project! Contributions, feedback, and feature suggestions are always welcome. 😃🚀  
