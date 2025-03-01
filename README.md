@@ -1,6 +1,6 @@
 # Arina AI  
 
-Arina AI is a locally running AI chatbot designed for intelligent conversations, long-term memory retention, and smooth user interaction. Built with **Ollama**, **Mistral**, and **Sentence-Transformers**, it offers a personalized and responsive chat experience without relying on external APIs.  
+Arina AI is a locally running AI chatbot designed for intelligent conversations, long-term memory retention, and smooth user interaction. Built with **Ollama**, **Gemma 2**, and **Sentence-Transformers**, it offers a personalized and responsive chat experience without relying on external APIs.  
 
 ## 🚀 Features  
 - **Local AI Processing** – Runs entirely on your machine.  
