@@ -1,0 +1,352 @@
+body {
+    font-family: "Rubik", sans-serif;
+    transition: background 0.5s ease, color 0.5s ease;
+    margin: 0; /* Remove body margin to prevent gaps */
+    padding: 0; /* Remove body padding */
+    overflow: hidden; /* Prevent horizontal scrolling */
+    display: flex;
+    flex-direction: column;
+    height: 100vh; /* Full height of the viewport */
+}
+
+.light-mode {
+    background: #f5f5f5;
+    color: #333;
+    --chat-bg: white; /* Light background */
+    --header-bg: #4caf50; 
+    --input-bg: #f5f5f5;
+    --input-text: black;
+    --send-btn-bg: #4caf50;
+    --send-btn-text: white;
+}
+
+.dark-mode {
+    background: #121212;
+    color: #eee;
+    --chat-bg: #222; /* Dark background */
+    --header-bg: #222;
+    --input-bg: #333;
+    --input-text: white;
+    --send-btn-bg: #4caf50;
+    --send-btn-text: white;
+}
+
+.header {
+    width: 100%;
+    background-color: var(--header-bg);
+    text-align: center;
+    padding: 20px 40px; /* Adjust the padding values here */
+    font-size: 24px;
+    font-weight: bold;
+    border-radius: 0 0 20px 20px;
+    display: flex; /* Enable flexbox */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    transition: background-color 0.5s ease-in-out; /* Smooth fade transition */
+    flex-shrink: 0; /* Prevent header from shrinking */
+}
+
+header {
+    width: 100%; /* Ensure full width */
+    display: inline-flex; 
+    justify-content: space-between;
+    align-items: center;
+    padding: 0; /* Remove padding */
+    margin: 0; /* Remove margin */
+    background-color: var(--header-bg);
+    color: white;
+    transition: background-color 0.5s ease-in-out; /* Smooth fade transition */
+}
+
+header h1 {
+    padding-left: 20px;  /* Padding inside the header, move h1 away from edge */
+    font-size: 24px;
+}
+
+header .switch {
+    margin-right: 20px;  /* Move the switch away from the edge */
+}
+
+.viewing-mode-container {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Space between text and switch */
+}
+
+/* Wrapper to center everything */
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* Center content vertically */
+    align-items: center; /* Center content horizontally */
+    flex-grow: 1; /* Allow wrapper to grow and fill available space */
+    box-sizing: border-box;
+    overflow: auto; /* Enable scrolling if content overflows */
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+/* Chat container centered */
+.chat-container {
+    width: 360px;
+    max-width: 360px;
+    background-color: var(--chat-bg);
+    padding: 10px;
+    border-radius: 24px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.5s ease-in-out; /* Smooth fade transition */
+    box-sizing: border-box; /* Include padding and border in element's total width and height */
+}
+
+.chat-box {
+    height: 300px;
+    overflow-y: auto;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    background: var(--input-bg);
+    transition: background 0.5s ease-in-out; /* Smooth fade transition */
+    scrollbar-width: none; /* For Firefox */
+    -ms-overflow-style: none;  /* For Internet Explorer 10+ */
+    padding: 5px; /* Add gap between chat bubble and chat box */
+    box-sizing: border-box; /* Include padding and border in element's total width and height */
+}
+
+.chat-box::-webkit-scrollbar {
+    display: none; /* Hide the scrollbar */
+}
+
+.message {
+    max-width: 80%;
+    padding: 12px;
+    border-radius: 20px;
+    margin: 5px 0;
+    word-wrap: break-word;
+    display: flex;
+    flex-direction: column; /* Align profile picture above */
+    align-items: flex-start;
+}
+
+.message span {
+    display: inline; /* Prevents stretching */
+}
+
+.message p,
+.message pre,
+.message blockquote {
+    margin: 0; /* Remove extra space around block elements */
+    display: inline; /* Forces block elements to behave like inline */
+}
+
+.message code {
+    background: rgba(0, 0, 0, 0.1); /* Light background for code */
+    padding: 2px 4px;
+    border-radius: 3px;
+    font-size: 0.95em;
+}
+
+.message .profile-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px; /* Add margin to separate from chat bubble */
+}
+
+.message .profile-pic {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin-right: 5px;
+}
+
+.message .profile-name {
+    font-weight: bold;
+}
+
+.user {
+    background: #4caf50;
+    color: white;
+    align-self: flex-end;
+    border-radius: 20px 20px 4px 20px;
+    align-items: flex-end;
+}
+
+.user .profile-container {
+    justify-content: flex-end;
+}
+
+.bot {
+    background-color: var(--chat-bg); /* Slightly darker than chatbox */
+    color: var(--input-text);
+    border-radius: 20px 20px 20px 4px;
+    transition: background-color 0.5s ease-in-out, color 0.5s ease-in-out; /* Smooth fade transition */
+}
+
+.error {
+    background: #ff4d4d;
+    color: white;
+    align-self: center;
+    text-align: center;
+    border-radius: 20px;
+    max-width: 90%;
+}
+
+/* The pill itself (greeting text) */
+.greeting {
+    font-weight: bold;
+    background: #4caf50;
+    color: white;
+    padding: 8px 15px; /* Equal padding */
+    border-radius: 50px;
+    width: fit-content;
+    margin: auto; /* Center horizontally */
+    margin-bottom: 10px;
+    transition: all 0.5s ease-in-out;
+    text-align: center;
+}
+
+h2.greeting {
+    font-size: 32px; /* Larger font size for the new greeting */
+    margin-bottom: 20px; /* Add margin below the new greeting */
+}
+
+.input-container {
+    display: flex;
+    border-radius: 50px;
+    overflow: hidden;
+    background-color: var(--input-bg);
+    padding: 5px;
+    margin-top: 10px;
+    transition: background-color 0.5s ease-in-out; /* Smooth fade transition */
+    width: 100%; /* Ensure input container takes full width */
+    box-sizing: border-box; /* Include padding and border in element's total width and height */
+}
+
+input {
+    flex-grow: 1;
+    border: none;
+    padding: 12px;
+    border-radius: 50px;
+    outline: none;
+    color: var(--input-text);
+    background-color: var(--input-bg);
+    transition: background-color 0.5s ease-in-out; /* Smooth fade transition */
+    box-sizing: border-box; /* Include padding and border in element's total width and height */
+}
+
+button {
+    background-color: var(--send-btn-bg);
+    color: var(--send-btn-text);
+    border: none;
+    padding: 12px 16px;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: background 0.5s;
+    box-sizing: border-box; /* Include padding and border in element's total width and height */
+}
+
+button:disabled {
+    cursor: not-allowed;
+}
+
+.light-mode button:disabled {
+    background: #ccc; /* Light mode disabled button color */
+}
+
+.dark-mode button:disabled {
+    background: #555; /* Dark mode disabled button color */
+}
+
+.switch {
+    position: relative;
+    width: 50px;
+    height: 26px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    border-radius: 50px;
+    transition: 0.5s;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 18px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    border-radius: 50%;
+    transition: 0.5s;
+}
+
+input:checked + .slider {
+    background-color: #4caf50;
+}
+
+input:checked + .slider:before {
+    transform: translateX(24px);
+}
+
+footer {
+    text-align: center;
+    margin-top: 20px; /* Ensure footer is below the chatbox */
+}
+
+.footer-icons {
+    display: inline-block;
+}
+
+.footer-icons a {
+    text-decoration: none;
+    font-size: 18px;
+    color: inherit;
+    transition: color 0.5s;
+    margin: 0 5px;
+}
+
+.footer-icons a:hover {
+    color: #4caf50;
+}
+
+.greeting-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.typing-greeting {
+    font-size: 32px; /* Larger font size for the new greeting */
+    color: var(--send-btn-bg); /* Green color like the buttons */
+    white-space: nowrap;
+    overflow: hidden;
+    margin: 0 auto; /* Center horizontally */
+}
+
+.blinking-cursor {
+    border-right: 3px solid var(--send-btn-bg); /* Blinking cursor effect */
+    animation: blink-caret 0.75s step-end infinite;
+}
+
+@keyframes typing {
+    from { width: 0; }
+    to { width: 30ch; } /* Adjust the width based on the length of the text */
+}
+
+@keyframes blink-caret {
+    from, to { border-color: transparent; }
+    50% { border-color: var(--send-btn-bg); }
+}

@@ -1,0 +1,4 @@
+keyboard==0.13.5
+numpy==2.2.3
+ollama==0.4.7
+sentence_transformers==3.4.1
