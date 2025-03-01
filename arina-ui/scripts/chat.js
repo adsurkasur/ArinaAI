@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Allow sending messages with Enter key, prevent form submission
     inputField.addEventListener("keydown", function (event) {
-        if (event.key === "Enter" && !sendButton.disabled) {
+        if (event.key === "Enter" && !event.shiftKey && !sendButton.disabled) {
             event.preventDefault(); // Prevents default form submission
             sendMessage();
         }

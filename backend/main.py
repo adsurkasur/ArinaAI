@@ -13,7 +13,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 import ollama
 import logging
-from memory import (
+from core.memory import (
     save_message,
     get_past_conversations,
     extract_and_store_facts,
@@ -127,3 +127,7 @@ async def collect_feedback(request: ChatRequest):
 def root():
     logger.info("✅ Arina API is running!")
     return {"message": "Arina API is running!"}
+
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run(app, host="0.0.0.0", port=8000)

@@ -1,4 +1,4 @@
 @echo off
-cd /d "%~dp0"
+cd..
 call venv\Scripts\activate.bat
-python arina.py
+python backend\core\arina.py

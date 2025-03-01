@@ -9,7 +9,7 @@ embedding_model = SentenceTransformer("all-MiniLM-L6-v2")
 
 def init_db():
     """Initialize the database if it does not exist."""
-    conn = sqlite3.connect("arina_memory.db")
+    conn = sqlite3.connect("/d:/Projects/ArinaAI/backend/data/arina_memory.db")
     cursor = conn.cursor()
 
     # Chat history table
@@ -53,7 +53,7 @@ def save_message(conversation_id, role, message):
     
     embedding = embedding_model.encode(message).tolist()
     
-    conn = sqlite3.connect("arina_memory.db")
+    conn = sqlite3.connect("/d:/Projects/ArinaAI/backend/data/arina_memory.db")
     cursor = conn.cursor()
     cursor.execute('''
         INSERT INTO conversations (timestamp, conversation_id, role, message, embedding)
@@ -64,7 +64,7 @@ def save_message(conversation_id, role, message):
     
 def get_past_conversations(limit=5):
     """Retrieve past conversations limited to the most recent ones."""
-    conn = sqlite3.connect("arina_memory.db")
+    conn = sqlite3.connect("/d:/Projects/ArinaAI/backend/data/arina_memory.db")
     cursor = conn.cursor()
     
     cursor.execute('''
@@ -80,7 +80,7 @@ def get_past_conversations(limit=5):
 
 def save_fact(key, value):
     """Store a user fact in memory."""
-    conn = sqlite3.connect("arina_memory.db")
+    conn = sqlite3.connect("/d:/Projects/ArinaAI/backend/data/arina_memory.db")
     cursor = conn.cursor()
     cursor.execute('''
         INSERT INTO user_memory (key, value)
@@ -92,7 +92,7 @@ def save_fact(key, value):
 
 def get_fact(key):
     """Retrieve a stored fact from user memory."""
-    conn = sqlite3.connect("arina_memory.db")
+    conn = sqlite3.connect("/d:/Projects/ArinaAI/backend/data/arina_memory.db")
     cursor = conn.cursor()
     cursor.execute("SELECT value FROM user_memory WHERE key = ?", (key,))
     result = cursor.fetchone()
@@ -109,7 +109,7 @@ def get_similar_conversations(user_input, top_n=5):
     """Retrieve past relevant messages using semantic similarity."""
     user_embedding = embedding_model.encode(user_input)
 
-    conn = sqlite3.connect("arina_memory.db")
+    conn = sqlite3.connect("/d:/Projects/ArinaAI/backend/data/arina_memory.db")
     cursor = conn.cursor()
     cursor.execute("SELECT message, embedding FROM conversations")
     
@@ -131,7 +131,7 @@ def get_similar_conversations(user_input, top_n=5):
 
 def save_feedback(conversation_id, user_input, arina_reply, reason):
     """Save user feedback including reasoning."""
-    conn = sqlite3.connect("arina_memory.db")
+    conn = sqlite3.connect("/d:/Projects/ArinaAI/backend/data/arina_memory.db")
     cursor = conn.cursor()
     cursor.execute('''
         INSERT INTO feedback (conversation_id, user_input, arina_reply, reason)
@@ -142,7 +142,7 @@ def save_feedback(conversation_id, user_input, arina_reply, reason):
 
 def analyze_feedback(conversation_id):
     """Analyze past feedback and adjust response behavior."""
-    conn = sqlite3.connect("arina_memory.db")
+    conn = sqlite3.connect("/d:/Projects/ArinaAI/backend/data/arina_memory.db")
     cursor = conn.cursor()
     
     # Get all feedback for this conversation
@@ -196,7 +196,7 @@ def apply_feedback_adjustments(messages):
 
 def reset_memory():
     """Wipe all stored conversations and facts."""
-    conn = sqlite3.connect("arina_memory.db")
+    conn = sqlite3.connect("/d:/Projects/ArinaAI/backend/data/arina_memory.db")
     cursor = conn.cursor()
     
     cursor.execute("DELETE FROM conversations")
