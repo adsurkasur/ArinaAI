@@ -27,20 +27,23 @@ Arina AI is an advanced AI companion designed to provide intelligent, engaging, 
    git clone https://github.com/adsurkasur/ArinaAI.git
    cd ArinaAI
 2. Create and Activate Virtual Environment:
-
-python -m venv venv
-source venv/bin/activate  # For macOS/Linux
-venv\Scripts\activate      # For Windows
+   ```sh
+    python -m venv venv
+    source venv/bin/activate  # For macOS/Linux
+    venv\Scripts\activate      # For Windows
 
 3. Install Dependencies:
-pip install -r requirements.txt
+   ```sh
+    pip install -r requirements.txt
 
 4. Run Arina AI:
-git pull origin main
+   ```sh
+    git pull origin main
 
 ## License
 This project is licensed under the MIT License – see the LICENSE file for details.
 
+##
 Arina AI is an evolving project! Contributions, feedback, and feature suggestions are always welcome. 😃🚀
 
 This README covers everything—features, installation, and how to update Arina. Let me know if you want any modifications! 😊
