@@ -35,14 +35,14 @@ Arina AI is an advanced AI companion designed to provide intelligent, engaging, 
 
 3. **Install Dependencies:**
    ```sh
-    pip install -r requirements.txt
+    pip install -r config/requirements.txt
 
 4. **Run Arina AI:**
    ```sh
     git pull origin main
 
 ## License
-This project is licensed under the MIT License – see the LICENSE file for details.
+This project is licensed under the Apache-2.0 License – see the LICENSE file for details.
 
 ## Developer Notes
 Arina AI is an evolving project! Contributions, feedback, and feature suggestions are always welcome. 😃🚀
