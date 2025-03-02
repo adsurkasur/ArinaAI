@@ -126,5 +126,7 @@ Thumbs.db
 # Arina's local database
 arina_memory.db
 
-# Local shortcut
+# Local things
 Run Arina AI.lnk
+.ruff_cache/
+.vscode/
