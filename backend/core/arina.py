@@ -124,11 +124,11 @@ def chat_with_arina():
                 print(f"Arina: {arina_reply}")
 
             except Exception as e:
-                arina_reply = f"Error: {e}"
-                print(f"Arina: {arina_reply}")
+                error_message = f"Error: {e}"
+                print(error_message)
 
             save_message(conversation_id, "user", user_input)
-            save_message(conversation_id, "assistant", arina_reply)
+            save_message(conversation_id, "assistant", arina_reply if 'arina_reply' in locals() else error_message)
 
             # Handle feedback if CTRL+F was triggered
             global feedback_triggered
