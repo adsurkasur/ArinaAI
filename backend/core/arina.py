@@ -12,18 +12,14 @@ import ollama
 import threading
 import keyboard
 import torch
-from memory import (
-    save_message,
-    get_past_conversations,
-    extract_and_store_facts,
-    get_fact,
-    reset_memory,
-    init_db,
-    get_similar_conversations,
-    save_feedback,
-    analyze_feedback,
-    apply_feedback_adjustments
-)
+from backend.core.message_saving import save_message
+from backend.core.past_conversations import get_past_conversations
+from backend.core.fact_extraction import extract_and_store_facts
+from backend.core.fact_management import get_fact
+from backend.core.memory_management import reset_memory
+from backend.core.db_setup import init_db
+from backend.core.conversation_retrieval import get_similar_conversations
+from backend.core.feedback_management import save_feedback, analyze_feedback, apply_feedback_adjustments
 
 # Ensure the database is initialized
 init_db()
@@ -80,7 +76,6 @@ def chat_with_arina():
         "Above all, you are more than an AI. You are a companion who listens, understands, and genuinely cares. "
         "Every interaction with you should feel like reconnecting with someone who truly knows and values the user—a presence they can rely on, a voice that feels familiar, a friend who is always there. "
     )
-
 
     try:
         while True:
