@@ -21,7 +21,8 @@ def extract_and_store_facts(message):
     # Extract name
     name = next((ent.text for ent in doc.ents if ent.label_ == "PERSON"), None)
     if name:
-        save_user_fact("name", name)
+        clean_name = name.split(".")[0]  # Store only the first sentence
+        save_user_fact("name", clean_name)
         logging.info(f"User name '{name}' stored in memory.")
     
     # Extract location
