@@ -54,18 +54,14 @@ def analyze_feedback(conversation_id):
 
     # Apply personalized feedback adjustments
     try:
-        current_facts = {
-            "response_tone": get_user_fact("response_tone"),
-            "response_length": get_user_fact("response_length"),
-            "clarity": get_user_fact("clarity")
-        }
+        user_facts = {fact: get_user_fact(fact) for fact in ["response_tone", "response_length", "clarity"]}
 
         for issue in common_issues:
-            if "robotic" in issue and current_facts["response_tone"] != "casual":
+            if "robotic" in issue and user_facts["response_tone"] != "casual":
                 save_user_fact("response_tone", "casual")
-            elif ("too short" in issue or "brief" in issue) and current_facts["response_length"] != "long":
+            elif ("too short" in issue or "brief" in issue) and user_facts["response_length"] != "long":
                 save_user_fact("response_length", "long")
-            elif "confusing" in issue and current_facts["clarity"] != "improve":
+            elif "confusing" in issue and user_facts["clarity"] != "improve":
                 save_user_fact("clarity", "improve")
 
     except Exception as e:
@@ -75,9 +71,10 @@ def analyze_feedback(conversation_id):
 
 def apply_feedback_adjustments(messages):
     """Modify responses based on stored user feedback preferences."""
-    response_tone = get_user_fact("response_tone")
-    response_length = get_user_fact("response_length")
-    clarity = get_user_fact("clarity")
+    response_tone = get_user_fact("response_tone") or "neutral"
+    response_length = get_user_fact("response_length") or "default"
+    clarity = get_user_fact("clarity") or "normal"
+
 
     for message in messages:
         if message["role"] == "system":
