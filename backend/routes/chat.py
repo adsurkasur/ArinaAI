@@ -47,7 +47,7 @@ async def chat_with_arina(request: ChatRequest):
     # Generate time-aware context for Arina dynamically
     time_context = f"Be aware that it is {current_time_of_day}. Adjust the conversation naturally based on this."
 
-    if most_active_time:
+    if most_active_time and most_active_time != "unknown":
         time_context += f" The user is usually active in the {most_active_time}. Adjust your tone accordingly."
 
     time_gap = None
