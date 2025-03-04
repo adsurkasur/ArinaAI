@@ -94,9 +94,12 @@ document.addEventListener("DOMContentLoaded", function () {
         } catch (error) {
             addMessage("⚠️ Connection error! Arina might be offline.", "error");
         } finally {
-            inputField.disabled = false;  // Re-enable input field
-            updateSendButtonState();      // Ensure button state updates
+            if (!inputField.disabled) {
+                inputField.disabled = false;
+            }
+            updateSendButtonState();
         }
+        
     }
 
     // Ensure input field and send button are enabled initially

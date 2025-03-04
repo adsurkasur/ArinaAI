@@ -37,6 +37,13 @@ def init_db():
             )
         ''')
 
+        # Ensure last interaction timestamp exists
+        cursor.execute('''
+            INSERT INTO user_memory (key, value)
+            VALUES ('last_interaction', datetime('now'))
+            ON CONFLICT(key) DO UPDATE SET value = datetime('now');
+        ''')
+
         # Feedback table
         cursor.execute('''
             CREATE TABLE IF NOT EXISTS feedback (

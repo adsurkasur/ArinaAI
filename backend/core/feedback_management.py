@@ -1,7 +1,8 @@
 import sqlite3
 import logging
-from .fact_management import save_fact, get_fact
 from .db_setup import DB_PATH
+from .fact_management import save_user_fact, get_user_fact
+
 
 def save_feedback(conversation_id, user_input, arina_reply, reason):
     """Save user feedback including reasoning."""
@@ -52,18 +53,18 @@ def analyze_feedback(conversation_id):
 
     # Apply personalized feedback adjustments
     for issue in common_issues:
-        if "robotic" in issue:
-            save_fact("response_tone", "casual")
-        elif "too short" in issue or "brief" in issue:
-            save_fact("response_length", "long")
-        elif "confusing" in issue:
-            save_fact("clarity", "improve")
+        if "robotic" in issue and get_user_fact("response_tone") != "casual":
+            save_user_fact("response_tone", "casual")
+        elif ("too short" in issue or "brief" in issue) and get_user_fact("response_length") != "long":
+            save_user_fact("response_length", "long")
+        elif "confusing" in issue and get_user_fact("clarity") != "improve":
+            save_user_fact("clarity", "improve")
 
 def apply_feedback_adjustments(messages):
     """Modify responses based on stored user feedback preferences."""
-    response_tone = get_fact("response_tone")
-    response_length = get_fact("response_length")
-    clarity = get_fact("clarity")
+    response_tone = get_user_fact("response_tone")
+    response_length = get_user_fact("response_length")
+    clarity = get_user_fact("clarity")
 
     for message in messages:
         if message["role"] == "system":
