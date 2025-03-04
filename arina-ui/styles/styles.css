@@ -92,7 +92,7 @@ header .switch {
     min-width: 600px; /* Increase minimum width */
     max-width: 1000px; /* Increase max width */
     background-color: var(--chat-bg);
-    padding: 10px 10px 4px 10px;
+    padding: 10px 10px 1px 10px;
     border-radius: 10px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
     transition: background-color 0.5s ease-in-out; /* Smooth fade transition */
