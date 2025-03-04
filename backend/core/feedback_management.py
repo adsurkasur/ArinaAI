@@ -75,6 +75,8 @@ def apply_feedback_adjustments(messages):
     response_length = get_user_fact("response_length") or "default"
     clarity = get_user_fact("clarity") or "normal"
 
+    if not response_tone or not response_length or not clarity:
+        logging.info("⚠️ Some user preferences are missing, using defaults.")
 
     for message in messages:
         if message["role"] == "system":
