@@ -53,12 +53,16 @@ def analyze_feedback(conversation_id):
 
     # Apply personalized feedback adjustments
     for issue in common_issues:
-        if "robotic" in issue and get_user_fact("response_tone") != "casual":
-            save_user_fact("response_tone", "casual")
-        elif ("too short" in issue or "brief" in issue) and get_user_fact("response_length") != "long":
-            save_user_fact("response_length", "long")
-        elif "confusing" in issue and get_user_fact("clarity") != "improve":
-            save_user_fact("clarity", "improve")
+        try:
+            if "robotic" in issue and get_user_fact("response_tone") != "casual":
+                save_user_fact("response_tone", "casual")
+            elif ("too short" in issue or "brief" in issue) and get_user_fact("response_length") != "long":
+                save_user_fact("response_length", "long")
+            elif "confusing" in issue and get_user_fact("clarity") != "improve":
+                save_user_fact("clarity", "improve")
+        except Exception as e:
+            logging.error(f"Error updating user fact: {e}")
+
 
 def apply_feedback_adjustments(messages):
     """Modify responses based on stored user feedback preferences."""
