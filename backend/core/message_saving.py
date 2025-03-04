@@ -2,8 +2,10 @@ import sqlite3
 import json
 import logging
 from backend.core.embedding import generate_embedding  # Adjusted import path
+import os
 
-DB_PATH = "backend/data/arina_memory.db"  # Adjust path to relative location
+# Define the relative path for the database
+DB_PATH = os.path.join(os.path.dirname(__file__), "../data/arina_memory.db")
 
 def save_message(timestamp, conversation_id, role, message):
     """Save conversation history and its embedding."""
