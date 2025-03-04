@@ -12,12 +12,6 @@ document.addEventListener("DOMContentLoaded", function () {
     // Listen for input changes
     inputField.addEventListener("input", updateSendButtonState);
 
-    // Extend input field as user types
-    inputField.addEventListener("input", function () {
-        this.style.height = "auto";
-        this.style.height = (this.scrollHeight) + "px";
-    });
-
     // Send message when the button is clicked
     sendButton.addEventListener("click", function () {
         sendButton.disabled = true; // Disable immediately to prevent spamming

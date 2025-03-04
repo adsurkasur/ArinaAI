@@ -88,32 +88,48 @@ header .switch {
 
 /* Chat container centered */
 .chat-container {
-    width: 360px;
-    max-width: 360px;
+    width: 80%; /* Adjust to 80% of the viewport width */
+    min-width: 600px; /* Increase minimum width */
+    max-width: 1000px; /* Increase max width */
     background-color: var(--chat-bg);
-    padding: 10px;
-    border-radius: 24px;
+    padding: 10px 10px 4px 10px;
+    border-radius: 10px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
     transition: background-color 0.5s ease-in-out; /* Smooth fade transition */
     box-sizing: border-box; /* Include padding and border in element's total width and height */
+    margin: 0 auto; /* Center the chat container horizontally */
 }
 
 .chat-box {
-    height: 300px;
+    height: 600px; /* Increase height */
+    max-height: 80vh; /* Adjust height to be relative to viewport height */
+    width: 100%; /* Increase width */
+    max-width: 100%; /* Ensure it takes full width */
     overflow-y: auto;
-    border-radius: 20px;
+    border-radius: 10px;
     display: flex;
     flex-direction: column;
     background: var(--input-bg);
     transition: background 0.5s ease-in-out; /* Smooth fade transition */
-    scrollbar-width: none; /* For Firefox */
-    -ms-overflow-style: none;  /* For Internet Explorer 10+ */
-    padding: 5px; /* Add gap between chat bubble and chat box */
+    scrollbar-width: thin; /* For Firefox */
+    scrollbar-color: var(--send-btn-bg) var(--input-bg); /* For Firefox */
+    padding: 10px; /* Ensure equal padding on all sides */
     box-sizing: border-box; /* Include padding and border in element's total width and height */
 }
 
 .chat-box::-webkit-scrollbar {
-    display: none; /* Hide the scrollbar */
+    width: 8px; /* Width of the scrollbar */
+}
+
+.chat-box::-webkit-scrollbar-track {
+    background: var(--input-bg); /* Background of the scrollbar track */
+    border-radius: 10px; /* Rounded corners for the track */
+}
+
+.chat-box::-webkit-scrollbar-thumb {
+    background-color: var(--send-btn-bg); /* Color of the scrollbar thumb */
+    border-radius: 10px; /* Rounded corners for the thumb */
+    border: 2px solid var(--input-bg); /* Padding around the thumb */
 }
 
 .message {
@@ -190,20 +206,6 @@ header .switch {
     max-width: 90%;
 }
 
-/* The pill itself (greeting text) */
-.greeting {
-    font-weight: bold;
-    background: #4caf50;
-    color: white;
-    padding: 8px 15px; /* Equal padding */
-    border-radius: 50px;
-    width: fit-content;
-    margin: auto; /* Center horizontally */
-    margin-bottom: 10px;
-    transition: all 0.5s ease-in-out;
-    text-align: center;
-}
-
 h2.greeting {
     font-size: 32px; /* Larger font size for the new greeting */
     margin-bottom: 20px; /* Add margin below the new greeting */
@@ -211,26 +213,58 @@ h2.greeting {
 
 .input-container {
     display: flex;
-    border-radius: 50px;
+    border-radius: 10px; /* Sharper corners */
     overflow: hidden;
     background-color: var(--input-bg);
     padding: 5px;
-    margin-top: 10px;
+    margin: 10px auto; /* Center the input container */
     transition: background-color 0.5s ease-in-out; /* Smooth fade transition */
     width: 100%; /* Ensure input container takes full width */
     box-sizing: border-box; /* Include padding and border in element's total width and height */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add subtle shadow */
+    justify-content: space-between; /* Ensure equal spacing */
 }
 
-input {
+textarea {
     flex-grow: 1;
     border: none;
     padding: 12px;
-    border-radius: 50px;
+    border-radius: 10px; /* Sharper corners */
     outline: none;
     color: var(--input-text);
     background-color: var(--input-bg);
     transition: background-color 0.5s ease-in-out; /* Smooth fade transition */
     box-sizing: border-box; /* Include padding and border in element's total width and height */
+    resize: none; /* Remove resizable feature */
+    overflow-y: auto; /* Enable vertical scrolling */
+    font-family: "Rubik", sans-serif; /* Match font with the rest of the UI */
+    font-size: 16px; /* Adjust font size */
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1); /* Add inner shadow */
+    height: auto; /* Set initial height to auto */
+    min-height: 5em; /* Minimum height to fit 5 lines */
+    max-height: 10em; /* Maximum height to fit 10 lines */
+    padding-right: 20px; /* Add padding to prevent text from being covered by scrollbar */
+    margin: 0; /* Remove margin to prevent gap */
+    pointer-events: auto; /* Ensure the input field is interactable */
+}
+
+textarea::placeholder {
+    color: #aaa; /* Lighter placeholder color */
+}
+
+textarea::-webkit-scrollbar {
+    width: 8px; /* Width of the scrollbar */
+}
+
+textarea::-webkit-scrollbar-track {
+    background: var(--input-bg); /* Background of the scrollbar track */
+    border-radius: 10px; /* Rounded corners for the track */
+}
+
+textarea::-webkit-scrollbar-thumb {
+    background-color: var(--send-btn-bg); /* Color of the scrollbar thumb */
+    border-radius: 10px; /* Rounded corners for the thumb */
+    border: 2px solid var(--input-bg); /* Padding around the thumb */
 }
 
 button {
@@ -238,14 +272,25 @@ button {
     color: var(--send-btn-text);
     border: none;
     padding: 12px 16px;
-    border-radius: 50px;
+    border-radius: 10px;
     cursor: pointer;
-    transition: background 0.5s;
+    transition: background 0.5s, transform 0.2s; /* Add transform transition */
     box-sizing: border-box; /* Include padding and border in element's total width and height */
+    margin-left: 6px; /* Add margin for spacing */
+    margin-right: 0px; /* Add margin for spacing */
+}
+
+button:hover {
+    transform: scale(1.05); /* Slightly enlarge on hover */
 }
 
 button:disabled {
     cursor: not-allowed;
+    opacity: 0.6; /* Reduce opacity for disabled state */
+}
+
+button:disabled:hover {
+    transform: none; /* Disable hover animation */
 }
 
 .light-mode button:disabled {

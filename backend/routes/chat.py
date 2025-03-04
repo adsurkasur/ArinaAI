@@ -12,6 +12,7 @@ from backend.core.feedback_management import apply_feedback_adjustments
 from backend.core.logging_setup import logger  # Import the logger from logging_setup.py
 from backend.core.prompts import SYSTEM_PROMPT  # Import the SYSTEM_PROMPT from prompts.py
 from backend.core.interaction_trends import get_time_of_day
+from backend.core.search_utils import needs_web_search, search_duckduckgo
 
 router = APIRouter()
 
@@ -21,8 +22,33 @@ class ChatRequest(BaseModel):
 @router.post("/chat")
 async def chat_with_arina(request: ChatRequest):
     user_input = request.message.strip()
-    logger.info(f"📩 User input: {user_input}")  # Debugging log
+    logger.info(f"📩 User input: {user_input}")
 
+    # Check if the user's query requires a web search
+    if needs_web_search(user_input):
+        logger.info(f"🌍 Web search triggered for: {user_input}")
+        search_summary, search_links = search_duckduckgo(user_input)
+        
+        search_context = f"I found the following information: {search_summary}"
+        if search_links:
+            search_context += f" (Related links: {', '.join(search_links)})"
+        
+        dynamic_prompt = (
+            f"User asked: {user_input}\n"
+            f"{search_context}\n"
+            f"Based on this, please provide a natural, conversational response "
+            f"that integrates this information without listing out links verbatim."
+        )
+        
+        response = ollama.chat(model="gemma2", messages=[
+            {"role": "system", "content": dynamic_prompt}
+        ])
+        arina_reply = response.get("message", {}).get("content", "").strip()
+        
+        if not arina_reply:
+            arina_reply = "I'm not sure how to respond to that, but I'm here to help."
+        return {"response": arina_reply}
+    
     if user_input.lower() == "arina, reset.":
         reset_memory()
         return {"response": "✅ Memory wiped."}
