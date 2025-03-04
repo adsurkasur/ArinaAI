@@ -130,3 +130,5 @@ arina_memory.db
 Run Arina AI.lnk
 .ruff_cache/
 .vscode/
+dump_code.py
+dumped_code.txt
