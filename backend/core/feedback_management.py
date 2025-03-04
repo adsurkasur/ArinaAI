@@ -35,6 +35,7 @@ def analyze_feedback(conversation_id):
         return
 
     if not feedbacks:
+        logging.info("No feedback found for this conversation.")
         return
     
     issue_counts = {}
@@ -52,16 +53,24 @@ def analyze_feedback(conversation_id):
     common_issues = sorted(issue_counts, key=issue_counts.get, reverse=True)[:3]
 
     # Apply personalized feedback adjustments
-    for issue in common_issues:
-        try:
-            if "robotic" in issue and get_user_fact("response_tone") != "casual":
+    try:
+        current_facts = {
+            "response_tone": get_user_fact("response_tone"),
+            "response_length": get_user_fact("response_length"),
+            "clarity": get_user_fact("clarity")
+        }
+
+        for issue in common_issues:
+            if "robotic" in issue and current_facts["response_tone"] != "casual":
                 save_user_fact("response_tone", "casual")
-            elif ("too short" in issue or "brief" in issue) and get_user_fact("response_length") != "long":
+            elif ("too short" in issue or "brief" in issue) and current_facts["response_length"] != "long":
                 save_user_fact("response_length", "long")
-            elif "confusing" in issue and get_user_fact("clarity") != "improve":
+            elif "confusing" in issue and current_facts["clarity"] != "improve":
                 save_user_fact("clarity", "improve")
-        except Exception as e:
-            logging.error(f"Error updating user fact: {e}")
+
+    except Exception as e:
+        logging.error(f"Error updating user fact: {e}")
+
 
 
 def apply_feedback_adjustments(messages):
