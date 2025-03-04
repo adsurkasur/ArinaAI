@@ -14,7 +14,7 @@ from datetime import datetime  # Correct import
 from backend.core.message_saving import save_message
 from backend.core.past_conversations import get_past_conversations
 from backend.core.fact_extraction import extract_and_store_facts
-from backend.core.fact_management import get_fact
+from backend.core.fact_management import get_user_fact as get_fact
 from backend.core.memory_management import reset_memory
 from backend.core.db_setup import init_db
 from backend.core.conversation_retrieval import get_similar_conversations
