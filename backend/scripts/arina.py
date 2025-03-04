@@ -1,17 +1,16 @@
+import sys
+import os
+
+# Ensure the backend module can be found
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../..')))
+
 import warnings
 import re
-
-def custom_warning_filter(message, category, filename, lineno, file=None, line=None):
-    if re.search(r"Torch was not compiled with flash attention", str(message)):
-        return  # Suppress this specific warning
-    warnings.defaultaction(message, category, filename, lineno, file, line)
-
-warnings.showwarning = custom_warning_filter  # Apply the filter
-
 import ollama
 import threading
 import keyboard
 import torch
+from datetime import datetime  # Correct import
 from backend.core.message_saving import save_message
 from backend.core.past_conversations import get_past_conversations
 from backend.core.fact_extraction import extract_and_store_facts
@@ -20,6 +19,13 @@ from backend.core.memory_management import reset_memory
 from backend.core.db_setup import init_db
 from backend.core.conversation_retrieval import get_similar_conversations
 from backend.core.feedback_management import save_feedback, analyze_feedback, apply_feedback_adjustments
+
+def custom_warning_filter(message, category, filename, lineno, file=None, line=None):
+    if re.search(r"Torch was not compiled with flash attention", str(message)):
+        return  # Suppress this specific warning
+    warnings.defaultaction(message, category, filename, lineno, file, line)
+
+warnings.showwarning = custom_warning_filter  # Apply the filter
 
 # Ensure the database is initialized
 init_db()
@@ -94,7 +100,7 @@ def chat_with_arina():
 
             # Retrieve past conversations (limit to avoid context overflow)
             history = get_past_conversations(limit=3)
-            formatted_history = [{"role": role, "content": msg} for role, msg in history]
+            formatted_history = [{"role": role, "content": msg} for _, role, msg, _ in history]
 
             # Retrieve relevant past messages
             relevant_history = get_similar_conversations(user_input, top_n=3)
@@ -122,8 +128,9 @@ def chat_with_arina():
                 error_message = f"Error: {e}"
                 print(error_message)
 
-            save_message(conversation_id, "user", user_input)
-            save_message(conversation_id, "assistant", arina_reply if 'arina_reply' in locals() else error_message)
+            timestamp = datetime.now()
+            save_message(timestamp, conversation_id, "user", user_input)
+            save_message(timestamp, conversation_id, "assistant", arina_reply if 'arina_reply' in locals() else error_message)
 
             # Handle feedback if CTRL+F was triggered
             global feedback_triggered

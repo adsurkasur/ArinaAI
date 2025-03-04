@@ -1,12 +1,12 @@
 import sqlite3
 import json
 import logging
-from datetime import datetime
-from .embedding import generate_embedding
-from .db_setup import DB_PATH
+from backend.core.embedding import generate_embedding  # Adjusted import path
+
+DB_PATH = "backend/data/arina_memory.db"  # Adjust path to relative location
 
 def save_message(timestamp, conversation_id, role, message):
-    """Save conversation history and its embedding with precise timestamp."""
+    """Save conversation history and its embedding."""
     embedding = generate_embedding(message)
     if embedding is None:
         return
@@ -14,15 +14,17 @@ def save_message(timestamp, conversation_id, role, message):
     hour = timestamp.hour
     day_of_week = timestamp.weekday()
 
-    with sqlite3.connect(DB_PATH) as conn:
-        cursor = conn.cursor()
-        cursor.execute('''
-            INSERT INTO conversations (timestamp, conversation_id, role, message, embedding, hour, day_of_week)
-            VALUES (?, ?, ?, ?, ?, ?, ?)
-        ''', (timestamp, conversation_id, role, message, json.dumps(embedding), hour, day_of_week))
-        conn.commit()
-
-    logging.info("Message saved to database.")
+    try:
+        with sqlite3.connect(DB_PATH) as conn:
+            cursor = conn.cursor()
+            cursor.execute('''
+                INSERT INTO conversations (timestamp, conversation_id, role, message, embedding, hour, day_of_week)
+                VALUES (?, ?, ?, ?, ?, ?, ?)
+            ''', (timestamp, conversation_id, role, message, json.dumps(embedding), hour, day_of_week))
+            conn.commit()
+        logging.info("Message saved to database.")
+    except Exception as e:
+        logging.error(f"Error saving message to database: {e}")
 
 def save_multiple_messages(messages):
     """Batch insert multiple messages."""
@@ -36,11 +38,14 @@ def save_multiple_messages(messages):
             data.append((timestamp, conversation_id, role, msg, json.dumps(embedding), hour, day_of_week))
 
     if data:
-        with sqlite3.connect(DB_PATH) as conn:
-            cursor = conn.cursor()
-            cursor.executemany('''
-                INSERT INTO conversations (timestamp, conversation_id, role, message, embedding, hour, day_of_week)
-                VALUES (?, ?, ?, ?, ?, ?, ?)
-            ''', data)
-            conn.commit()
-        logging.info("Batch of messages saved to database.")
+        try:
+            with sqlite3.connect(DB_PATH) as conn:
+                cursor = conn.cursor()
+                cursor.executemany('''
+                    INSERT INTO conversations (timestamp, conversation_id, role, message, embedding, hour, day_of_week)
+                    VALUES (?, ?, ?, ?, ?, ?, ?)
+                ''', data)
+                conn.commit()
+            logging.info("Batch of messages saved to database.")
+        except Exception as e:
+            logging.error(f"Error saving batch of messages to database: {e}")

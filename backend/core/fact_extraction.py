@@ -18,8 +18,13 @@ def extract_and_store_facts(message):
     """Extract relevant personal facts from user input and store them."""
     name = extract_name(message)
     if name:
-        with sqlite3.connect(DB_PATH) as conn:
-            cursor = conn.cursor()
-            cursor.execute("INSERT INTO user_memory (key, value) VALUES (?, ?) ON CONFLICT(key) DO UPDATE SET value = ?", ("name", name, name))
-            conn.commit()
-        logging.info("Fact stored.")
+        try:
+            with sqlite3.connect(DB_PATH) as conn:
+                cursor = conn.cursor()
+                cursor.execute("INSERT INTO user_memory (key, value) VALUES (?, ?) ON CONFLICT(key) DO UPDATE SET value = ?", ("name", name, name))
+                conn.commit()
+            logging.info("Fact stored.")
+        except sqlite3.Error as e:
+            logging.error(f"SQLite error: {e}")
+        except Exception as e:
+            logging.error(f"Unexpected error: {e}")

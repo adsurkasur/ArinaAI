@@ -1,5 +1,6 @@
 import sqlite3
 import json
+import logging
 import numpy as np
 from .embedding import generate_embedding
 from .db_setup import DB_PATH
@@ -10,11 +11,18 @@ def find_similar_conversations(query_message):
     if query_embedding is None:
         return []
 
-    with sqlite3.connect(DB_PATH) as conn:
-        cursor = conn.cursor()
-        cursor.execute('SELECT message, embedding FROM conversations')
-        conversations = cursor.fetchall()
-    
+    try:
+        with sqlite3.connect(DB_PATH) as conn:
+            cursor = conn.cursor()
+            cursor.execute('SELECT message, embedding FROM conversations')
+            conversations = cursor.fetchall()
+    except sqlite3.Error as e:
+        logging.error(f"SQLite error: {e}")
+        return []
+    except Exception as e:
+        logging.error(f"Unexpected error: {e}")
+        return []
+
     similarities = []
     for message, embedding in conversations:
         embedding = json.loads(embedding)
@@ -26,13 +34,18 @@ def find_similar_conversations(query_message):
 
 def get_similar_conversations(user_input, top_n=5):
     """Retrieve past relevant messages using semantic similarity."""
-    conn = sqlite3.connect(DB_PATH)
-    cursor = conn.cursor()
-    
-    cursor.execute('SELECT message, embedding FROM conversations')
-    conversations = cursor.fetchall()
-    conn.close()
-    
+    try:
+        with sqlite3.connect(DB_PATH) as conn:
+            cursor = conn.cursor()
+            cursor.execute('SELECT message, embedding FROM conversations')
+            conversations = cursor.fetchall()
+    except sqlite3.Error as e:
+        logging.error(f"SQLite error: {e}")
+        return []
+    except Exception as e:
+        logging.error(f"Unexpected error: {e}")
+        return []
+
     user_embedding = generate_embedding(user_input)
     if user_embedding is None:
         return []

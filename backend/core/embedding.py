@@ -1,5 +1,4 @@
 import logging
-import json
 import numpy as np
 from sentence_transformers import SentenceTransformer
 
@@ -12,5 +11,5 @@ def generate_embedding(message):
         embedding = embedding_model.encode(message).tolist()
         return embedding
     except Exception as e:
-        logging.error(f"Error encoding message: {e}")
+        logging.error(f"Error generating embedding: {e}")
         return None

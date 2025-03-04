@@ -1,28 +1,37 @@
 import sqlite3
+import logging
 from .fact_management import save_fact, get_fact
 from .db_setup import DB_PATH
 
 def save_feedback(conversation_id, user_input, arina_reply, reason):
     """Save user feedback including reasoning."""
-    conn = sqlite3.connect(DB_PATH)
-    cursor = conn.cursor()
-    cursor.execute('''
-        INSERT INTO feedback (conversation_id, user_input, arina_reply, reason)
-        VALUES (?, ?, ?, ?)
-    ''', (conversation_id, user_input, arina_reply, reason))
-    conn.commit()
-    conn.close()
+    try:
+        with sqlite3.connect(DB_PATH) as conn:
+            cursor = conn.cursor()
+            cursor.execute('''
+                INSERT INTO feedback (conversation_id, user_input, arina_reply, reason)
+                VALUES (?, ?, ?, ?)
+            ''', (conversation_id, user_input, arina_reply, reason))
+            conn.commit()
+        logging.info("Feedback saved to database.")
+    except sqlite3.Error as e:
+        logging.error(f"SQLite error: {e}")
+    except Exception as e:
+        logging.error(f"Unexpected error: {e}")
 
 def analyze_feedback(conversation_id):
     """Analyze past feedback and adjust response behavior."""
-    conn = sqlite3.connect(DB_PATH)
-    cursor = conn.cursor()
-    
-    # Get all feedback for this conversation
-    cursor.execute("SELECT reason FROM feedback WHERE conversation_id = ?", (conversation_id,))
-    feedbacks = cursor.fetchall()
-    
-    conn.close()
+    try:
+        with sqlite3.connect(DB_PATH) as conn:
+            cursor = conn.cursor()
+            cursor.execute("SELECT reason FROM feedback WHERE conversation_id = ?", (conversation_id,))
+            feedbacks = cursor.fetchall()
+    except sqlite3.Error as e:
+        logging.error(f"SQLite error: {e}")
+        return
+    except Exception as e:
+        logging.error(f"Unexpected error: {e}")
+        return
 
     if not feedbacks:
         return

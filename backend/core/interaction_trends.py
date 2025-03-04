@@ -1,18 +1,23 @@
 import sqlite3
+import logging
 from .db_setup import DB_PATH
 
 def get_interaction_trends():
     """Analyze the user's interaction patterns (hourly and day-of-week)."""
-    conn = sqlite3.connect(DB_PATH)
-    cursor = conn.cursor()
-    
-    cursor.execute('''
-        SELECT hour, day_of_week, interaction_count FROM interaction_patterns
-        ORDER BY day_of_week, hour
-    ''')
-    
-    trends = cursor.fetchall()
-    conn.close()
+    try:
+        with sqlite3.connect(DB_PATH) as conn:
+            cursor = conn.cursor()
+            cursor.execute('''
+                SELECT hour, day_of_week, interaction_count FROM interaction_patterns
+                ORDER BY day_of_week, hour
+            ''')
+            trends = cursor.fetchall()
+    except sqlite3.Error as e:
+        logging.error(f"SQLite error: {e}")
+        return []
+    except Exception as e:
+        logging.error(f"Unexpected error: {e}")
+        return []
     
     return trends
 

@@ -1,6 +1,8 @@
 import torch
+
 torch.backends.cuda.enable_flash_sdp(True)
 torch.backends.cuda.sdp_kernel(enable_math=False, enable_flash=False, enable_mem_efficient=True)
+
 print(f"PyTorch Version: {torch.__version__}")
 print(f"CUDA Available: {torch.cuda.is_available()}")
 print(f"CUDA Version: {torch.version.cuda}")
