@@ -45,7 +45,7 @@ async def chat_with_arina(request: ChatRequest):
     most_active_time = get_user_fact("most_active_time") or "unknown"
 
     # Generate time-aware context for Arina dynamically
-    time_context = "Think about the time of day and how long it's been since our last chat. Make your response flow naturally without stating exact times."
+    time_context = f"Be aware that it is {current_time_of_day}. Adjust the conversation naturally based on this."
 
     if most_active_time:
         time_context += f" The user is usually active in the {most_active_time}. Adjust your tone accordingly."
@@ -55,22 +55,21 @@ async def chat_with_arina(request: ChatRequest):
         time_gap = (datetime.now() - last_interaction).total_seconds()
 
     if time_gap is not None:
-        if time_gap > 86400:  # More than a day
-            time_context += " The user hasn't chatted for over a day. Ease back into the conversation naturally."
-        elif time_gap > 43200:  # More than 12 hours
-            time_context += f" It's {current_time_of_day} now. Keep the response relevant to the time without explicitly mentioning the gap."
-        elif time_gap > 18000:  # More than 5 hours
-            time_context += f" The user is back after a few hours. Adjust the tone to suit a {current_time_of_day} conversation."
+        if time_gap > 86400:  
+            time_context += " The user has returned after a long time. Let them feel welcomed without explicitly mentioning the gap."
+        elif time_gap > 43200:  
+            time_context += f" Since it is {current_time_of_day}, ensure your response flows accordingly."
+        elif time_gap > 18000:  
+            time_context += f" Adapt the conversation for a {current_time_of_day} chat naturally."
         else:
-            time_context += " The chat is active. Keep the conversation flowing smoothly."
+            time_context += " The conversation is active; keep it engaging."
 
-    # Modify system prompt dynamically
-    messages = [{"role": "system", "content": SYSTEM_PROMPT + "\n\n" + time_context}]
+    # Apply feedback adjustments to system prompt
+    system_prompt_adjusted = apply_feedback_adjustments([{"role": "system", "content": SYSTEM_PROMPT}])[0]["content"]
+    messages = [{"role": "system", "content": system_prompt_adjusted + "\n\n" + time_context}]
     messages.extend(formatted_history)
     messages.extend(formatted_relevant_history)
     messages.append({"role": "user", "content": user_input})
-
-    messages = apply_feedback_adjustments(messages)
 
     try:
         response = ollama.chat(model="gemma2", messages=messages)
@@ -91,7 +90,19 @@ async def chat_with_arina(request: ChatRequest):
     try:
         save_message(datetime.now(), "global_chat", "user", user_input)
         save_message(datetime.now(), "global_chat", "assistant", arina_reply)
-        update_last_interaction()  # Update the last interaction timestamp
+        update_last_interaction()
+
+        # Update most active time based on latest interaction
+        current_hour = datetime.now().hour
+        if 6 <= current_hour < 12:
+            save_user_fact("most_active_time", "morning")
+        elif 12 <= current_hour < 18:
+            save_user_fact("most_active_time", "afternoon")
+        elif 18 <= current_hour < 24:
+            save_user_fact("most_active_time", "evening")
+        else:
+            save_user_fact("most_active_time", "night")
+
     except Exception as e:
         logger.error(f"Error saving message to database: {e}")
 
