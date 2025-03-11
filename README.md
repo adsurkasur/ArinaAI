@@ -49,13 +49,13 @@ Arina AI is integrating blockchain to enhance data security, decentralization, a
 
 This approach enables **a hybrid AI model**, combining the flexibility of local execution with the security and scalability of blockchain technology.
 
-🚀 **Note:** The blockchain integration is designed to enhance accessibility and security without imposing staking requirements.
+**Note:** The blockchain integration is designed to enhance accessibility and security without imposing staking requirements.
 
 ## Target Users
 
 Arina AI is designed for:
-✅ **Students & Researchers** – Learn AI concepts, conduct POM-QM case studies, and improve research efficiency.
-✅ **Business Analysts & Industry Professionals** – Gain real-time insights, optimize operations, and enhance decision-making with AI.
+- **Students & Researchers** – Learn AI concepts, conduct POM-QM case studies, and improve research efficiency.
+- **Business Analysts & Industry Professionals** – Gain real-time insights, optimize operations, and enhance decision-making with AI.
 
 ## Installation
 
