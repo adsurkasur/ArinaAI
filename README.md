@@ -1,8 +1,8 @@
 # Arina AI
 
-**Arina AI – Your Intelligent Companion for Business, Agriculture, and Insightful Decision-Making.**
+**Arina AI – Your Intelligent Companion for Business, POM-QM Analysis, and Agricultural Insights.**
 
-Arina AI is an intelligent and adaptable AI designed to assist in business feasibility analysis, agricultural insights, and natural conversations. With a strong focus on practical applications, Arina provides data-driven recommendations, market analysis, and crop suitability assessments. Built as a local-first AI, it operates efficiently on personal devices while offering advanced memory, contextual awareness, and analytical capabilities.
+Arina AI is an intelligent and adaptable AI designed to assist in business feasibility analysis, operations research (POM-QM), agricultural insights, and natural conversations. With a strong focus on practical applications, Arina provides data-driven recommendations, market analysis, and decision-making support. Built as a local-first AI, it operates efficiently on personal devices while offering advanced memory, contextual awareness, and analytical capabilities.
 
 ## Branding Philosophy
 
@@ -14,9 +14,10 @@ Arina AI is an intelligent and adaptable AI designed to assist in business feasi
 - **Markdown Support** – Chat responses are formatted with rich text.
 - **Dark Mode** – Toggle between light and dark themes for better readability.
 - **Smooth Animations** – UI is enhanced with smooth transitions and effects.
-- **Business Feasibility Analysis** – Provides financial insights, risk assessments, and market studies (Upcoming).
-- **Agricultural Intelligence** – Analyzes geographic and climate data for crop recommendations (Upcoming).
-- **Voice Input & Output** (Planned) – Speak and listen to Arina for a hands-free experience.
+- **Business Feasibility Analysis (Planned)** – Provides financial insights, risk assessments, and market studies.
+- **POM-QM Decision Support (Planned)** – Implements quantitative methods and operations research tools for business and industrial decision-making.
+- **Agricultural Intelligence (Planned)** – Analyzes geographic and climate data for crop recommendations.
+- **Voice Input & Output (Planned)** – Speak and listen to Arina for a hands-free experience.
 - **Web-Based Interface** – Clean, simple, and responsive design.
 - **Local-First AI** – Runs on your device without requiring cloud processing.
 
@@ -27,11 +28,18 @@ Arina AI follows a structured development roadmap. Each phase enhances its capab
 - **Phase 0 (Current):** Core AI functionality with memory, search integration, and language adaptation.
 - **Phase 1:** Enhancing AI contextual awareness and response quality.
 - **Phase 2:** Business feasibility analysis with financial insights and report exports.
-- **Phase 3:** Agricultural intelligence for crop suitability and sustainability analysis.
-- **Phase 4:** UI/UX refinements and frontend improvements.
-- **Phase 5:** Making the server online for global access.
-- **Phase 6:** Blockchain integration & utility token implementation.
-- **Phase 7:** Continuous improvements, better memory, and expanding AI-driven tools.
+- **Phase 3:** POM-QM decision support with operations research features.
+- **Phase 4:** Agricultural intelligence for crop suitability and sustainability analysis.
+- **Phase 5:** UI/UX refinements and frontend improvements.
+- **Phase 6:** Making the server online for global access.
+- **Exploratory Phase:** Blockchain integration & utility token implementation.
+- **Continuous Development:** Ongoing improvements, better memory, and expanding AI-driven tools.
+
+## Target Users
+
+Arina AI is designed for:
+- **Students & University Students** – Learning AI, business analysis, and agricultural insights.
+- **Business Analysts, PPIC, & Industry Professionals** – Supporting decision-making in business, operations, and supply chain management.
 
 ## Installation
 
@@ -67,7 +75,12 @@ Arina AI follows a structured development roadmap. Each phase enhances its capab
 
    **Note:** Some dependencies may not be directly downloadable from PyPI. They might require specific installation links from the project's GitHub or modifications for hardware compatibility.
 
-4. **Download Your Own AI Model:** Arina requires a compatible AI model. Please download your own model using Ollama before running Arina.
+4. **Install an AI Model Using Ollama:**  
+   Arina requires a compatible AI model. Use Ollama to install a suitable model:
+
+   ```sh
+   ollama pull gemma2
+   ```
 
 5. **Run Arina AI:**
 
@@ -77,7 +90,7 @@ Arina AI follows a structured development roadmap. Each phase enhances its capab
 
 ## Running the Web UI
 
-To access the Arina Web UI based on the folder structure:
+To access the Arina Web UI:
 
 1. **Start the Backend:** Run the `main.py` script in the backend directory.
 
@@ -88,7 +101,7 @@ To access the Arina Web UI based on the folder structure:
 2. **Open the Web UI:**
 
    - Navigate to the `arina-ui/public/index.html` file.
-   - Open it in a browser manually or use a local web server to host it.
+   - Open it in a browser manually or use a local web server.
 
    Example using Python's built-in server:
 
@@ -98,6 +111,8 @@ To access the Arina Web UI based on the folder structure:
    ```
 
    Then open `http://localhost:8000` in your browser.
+
+   **Note:** A major UI revamp is in progress using Figma to enhance design and interactivity.
 
 ## Usage
 
@@ -122,4 +137,3 @@ This project is licensed under the Apache-2.0 License – see the LICENSE file f
 ## Developer Notes
 
 Arina AI is an evolving project! Contributions, feedback, and feature suggestions are always welcome. 😃🚀
-
