@@ -402,6 +402,9 @@ footer {
     height: 100%;
     background-color: var(--chat-bg); 
     color: var(--input-text);
+    display: flex; /* Enable Flexbox */
+    flex-direction: column; /* Stack items vertically */
+    justify-content: space-between; /* Push footer to the bottom */
     overflow-x: hidden;
     transition: transform 0.3s ease, background-color 0.5s ease, color 0.5s ease; /* Smooth transition for showing/hiding */
     transform: translateX(-100%); /* Initially hidden */
@@ -476,6 +479,30 @@ footer {
 
 .sidebar-menu a:hover {
     color: var(--send-btn-bg); /* Highlight on hover */
+}
+
+.sidebar footer {
+    text-align: center;
+    padding: 20px;
+    font-size: 14px;
+    color: var(--input-text);
+    border-top: 1px solid rgba(255, 255, 255, 0.1); /* Optional: Add a top border */
+}
+
+.sidebar footer .footer-icons {
+    margin-top: 10px;
+}
+
+.sidebar footer .footer-icons a {
+    text-decoration: none;
+    font-size: 18px;
+    color: inherit;
+    margin: 0 5px;
+    transition: color 0.3s ease;
+}
+
+.sidebar footer .footer-icons a:hover {
+    color: #4caf50; /* Highlight on hover */
 }
 
 /* Global scrollbar styles */
