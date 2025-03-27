@@ -28,86 +28,84 @@ async def chat_with_arina(request: ChatRequest):
     if needs_web_search(user_input):
         logger.info(f"🌍 Web search triggered for: {user_input}")
         search_summary, search_links = search_duckduckgo(user_input)
-        
+
         search_context = f"I found the following information: {search_summary}"
         if search_links:
             search_context += f" (Related links: {', '.join(search_links)})"
-        
+
         dynamic_prompt = (
             f"User asked: {user_input}\n"
             f"{search_context}\n"
             f"Based on this, please provide a natural, conversational response "
             f"that integrates this information without listing out links verbatim."
         )
-        
-        response = ollama.chat(model="gemma2", messages=[
-            {"role": "system", "content": dynamic_prompt}
-        ])
-        arina_reply = response.get("message", {}).get("content", "").strip()
-        
-        if not arina_reply:
-            arina_reply = "I'm not sure how to respond to that, but I'm here to help."
+
+        logger.info("🧠 Loading model: gemma3:1b for web search response")
+        try:
+            response = ollama.chat(model="gemma3:1b", messages=[
+                {"role": "system", "content": dynamic_prompt}
+            ])
+            arina_reply = response.get("message", {}).get("content", "").strip()
+            if not arina_reply:
+                arina_reply = "I'm not sure how to respond to that, but I'm here to help."
+        except Exception as e:
+            logger.error(f"🚨 Error connecting to Ollama for web search: {e}")
+            arina_reply = "⚠️ Arina is having trouble responding. Try again."
+
         return {"response": arina_reply}
-    
+
+    # Handle reset command
     if user_input.lower() == "arina, reset.":
         reset_memory()
         return {"response": "✅ Memory wiped."}
 
+    # Extract facts and retrieve user-specific data
     extract_and_store_facts(user_input)
     user_name = get_user_fact("name")
 
     # Retrieve past relevant conversations
     history = get_past_conversations(limit=3)
     formatted_history = [{"role": role, "content": msg} for _, role, msg, _ in history]
-
     relevant_history = get_similar_conversations(user_input, top_n=3)
     formatted_relevant_history = [{"role": "user", "content": msg} for msg in relevant_history]
 
-    # Get last interaction time
+    # Generate time-aware context
     last_interaction = get_last_interaction()
     current_time_of_day = get_time_of_day()
-
-    # Get user's most active time
     most_active_time = get_user_fact("most_active_time") or "unknown"
 
-    # Generate time-aware context for Arina dynamically
     time_context = f"Be aware that it is {current_time_of_day}. Adjust the conversation naturally based on this."
-
-    if most_active_time and most_active_time != "unknown":
+    if most_active_time != "unknown":
         time_context += f" The user is usually active in the {most_active_time}. Adjust your tone accordingly."
 
-    time_gap = None
     if last_interaction:
         time_gap = (datetime.now() - last_interaction).total_seconds()
-
-    if time_gap is not None:
-        if time_gap > 86400:  
+        if time_gap > 86400:
             time_context += " The user has returned after a long time. Let them feel welcomed without explicitly mentioning the gap."
-        elif time_gap > 43200:  
+        elif time_gap > 43200:
             time_context += f" Since it is {current_time_of_day}, ensure your response flows accordingly."
-        elif time_gap > 18000:  
+        elif time_gap > 18000:
             time_context += f" Adapt the conversation for a {current_time_of_day} chat naturally."
         else:
             time_context += " The conversation is active; keep it engaging."
 
-    # Apply feedback adjustments to system prompt
+    # Construct messages for the AI model
     system_prompt_adjusted = apply_feedback_adjustments([{"role": "system", "content": SYSTEM_PROMPT}])[0]["content"]
     messages = [{"role": "system", "content": system_prompt_adjusted + "\n\n" + time_context}]
     messages.extend(formatted_history)
     messages.extend(formatted_relevant_history)
     messages.append({"role": "user", "content": user_input})
 
+    # Call the AI model
+    logger.info("🧠 Loading model: gemma3:1b for general chat response")
     try:
-        response = ollama.chat(model="gemma2", messages=messages)
+        response = ollama.chat(model="gemma3:1b", messages=messages)
         logger.info(f"🧠 Ollama raw response: {response}")  # Debugging log
 
-        # Extract response message
         arina_reply = response.get("message", {}).get("content", "").strip()
-
         if not arina_reply:
             logger.warning("⚠️ Empty response from Ollama!")
             arina_reply = "🤖 I'm not sure how to respond to that."
-
     except Exception as e:
         logger.error(f"🚨 Error connecting to Ollama: {e}")
         arina_reply = "⚠️ Arina is having trouble responding. Try again."
@@ -128,10 +126,8 @@ async def chat_with_arina(request: ChatRequest):
             save_user_fact("most_active_time", "evening")
         else:
             save_user_fact("most_active_time", "night")
-
     except Exception as e:
-        logger.error(f"Error saving message to database: {e}")
+        logger.error(f"🚨 Error saving message to database: {e}")
 
     logger.info(f"💬 Arina's reply: {arina_reply}")
-
     return {"response": arina_reply}
