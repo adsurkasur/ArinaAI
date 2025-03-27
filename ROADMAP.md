@@ -5,8 +5,8 @@ This document outlines the development phases for Arina AI, focusing on enhancin
 ## Phase 0: Current State
 - **Core Functionality**: FastAPI-based backend with Ollama for AI responses.
 - **Memory System**: SQLite database with Sentence-Transformers for long-term memory.
-- **Model Used**: Gemma 2 for response generation.
-- **Search Capability**: DuckDuckGo integration for external knowledge retrieval.
+- **Model Used**: Gemma 2 for response generation _(subject to change as development progresses)_.
+- **Search Capability**: DuckDuckGo integration for external knowledge retrieval _(may be updated in future iterations)_.
 - **Time Awareness**: Recognizes time gaps and user activity patterns.
 - **Language Adaptation**: Learns and adjusts to the user’s preferred language over time.
 
@@ -59,4 +59,7 @@ This document outlines the development phases for Arina AI, focusing on enhancin
 
 ---
 
-Each phase will include iterative UI/UX enhancements as new features are added.
+**Note:**  
+- The AI model used (currently Gemma 2) may change as development progresses to improve performance and adaptability.  
+- The search capability (currently using DuckDuckGo) may be replaced or enhanced with other search integrations in future updates.
+- Each phase will include iterative UI/UX enhancements as new features are added.
