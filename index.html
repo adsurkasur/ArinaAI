@@ -1,10 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta http-equiv="refresh" content="0; url=/arina-ui/public/index.html">
-    <title>Redirecting...</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arina AI</title>
+    <link rel="stylesheet" href="arina-ui/styles/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="icon" href="arina-ui/images/favicon.ico">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Markdown Parser -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <!-- Security Library to Prevent XSS (Recommended) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.0.8/purify.min.js"></script>
+
 </head>
-<body>
-    <p>If you are not redirected automatically, follow this <a href="/arina-ui/public/index.html">link</a>.</p>
+<body class="light-mode">
+    <header>
+        <h1>Arina AI</h1>
+        <div class="viewing-mode-container">
+            <span>Viewing Mode</span>
+            <label class="switch">
+                <input type="checkbox" id="themeToggle">
+                <span class="slider round"></span>
+            </label>
+        </div>
+    </header>
+
+    <div class="wrapper"> <!-- Wrapper to group centered elements -->
+        <div class="greeting-container" style="text-align: center; margin-bottom: 20px;">
+            <h2 class="typing-greeting"><span id="greeting-text"></span><span class="blinking-cursor"></span></h2>
+        </div>
+        
+        <main>
+            <div class="chat-container">
+                <div id="chatBox" class="chat-box"></div>
+                <div class="input-container">
+                    <textarea id="chatInput" placeholder="Type a message..."></textarea> <!-- Ensure input is enabled -->
+                    <button id="sendButton" disabled>Send</button>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>created by adsurkasur</p>
+            <div class="footer-icons">
+                <a href="https://twitter.com/adsurkasur" target="_blank"><i class="fab fa-x-twitter"></i></a>
+                <a href="https://github.com/adsurkasur" target="_blank"><i class="fab fa-github"></i></a>
+            </div>
+        </footer>
+    </div>
+
+    <script src="arina-ui/scripts/chat.js"></script>
+    <script src="arina-ui/scripts/style.js"></script>
+    <script src="arina-ui/scripts/typing.js"></script> <!-- Add typing effect script -->
 </body>
 </html>
