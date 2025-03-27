@@ -53,7 +53,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
             const profilePic = document.createElement("img");
             profilePic.classList.add("profile-pic");
-            profilePic.src = "../images/arina.jpg";
+            profilePic.src = "arina-ui/images/arina.jpg";
 
             const profileName = document.createElement("span");
             profileName.classList.add("profile-name");

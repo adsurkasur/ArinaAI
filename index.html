@@ -15,9 +15,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.0.8/purify.min.js"></script>
 
 </head>
+
 <body class="light-mode">
     <header>
-        <h1>Arina AI</h1>
+        <h1><a href="https://github.com/adsurkasur/ArinaAI" style="text-decoration: none; color: inherit;">Arina AI</a></h1>
         <div class="viewing-mode-container">
             <span>Viewing Mode</span>
             <label class="switch">
@@ -26,6 +27,23 @@
             </label>
         </div>
     </header>
+
+    <div id="mobileOverlay">Arina AI currently does not support mobile or small window view.</div>
+
+    <!-- Sidebar -->
+    <div id="sidebar" class="sidebar">
+        <ul class="sidebar-menu">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#features">Features</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </div>
+
+    <!-- Toggle Button -->
+    <button id="toggleSidebar" class="sidebar-toggle">
+        <i class="fas fa-chevron-right"></i> <!-- Arrow icon -->
+    </button>
 
     <div class="wrapper"> <!-- Wrapper to group centered elements -->
         <div class="greeting-container" style="text-align: center; margin-bottom: 20px;">
@@ -37,7 +55,9 @@
                 <div id="chatBox" class="chat-box"></div>
                 <div class="input-container">
                     <textarea id="chatInput" placeholder="Type a message..."></textarea> <!-- Ensure input is enabled -->
-                    <button id="sendButton" disabled>Send</button>
+                    <button id="sendButton" disabled>
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
                 </div>
             </div>
         </main>
@@ -53,6 +73,8 @@
 
     <script src="arina-ui/scripts/chat.js"></script>
     <script src="arina-ui/scripts/style.js"></script>
-    <script src="arina-ui/scripts/typing.js"></script> <!-- Add typing effect script -->
+    <script src="arina-ui/scripts/typing.js"></script> 
+    <script src="arina-ui/scripts/no_mobile_view.js"></script>
+    <script src="arina-ui/scripts/sidebar.js"></script>
 </body>
 </html>
