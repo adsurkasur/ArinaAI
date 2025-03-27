@@ -91,7 +91,7 @@ async def chat_with_arina(request: ChatRequest):
 
     # Construct messages for the AI model
     system_prompt_adjusted = apply_feedback_adjustments([{"role": "system", "content": SYSTEM_PROMPT}])[0]["content"]
-    messages = [{"role": "system", "content": system_prompt_adjusted + "\n\n" + time_context}]
+    messages = [{"role": "system", "content": system_prompt_adjusted[0] + "\n\n" + time_context}]
     messages.extend(formatted_history)
     messages.extend(formatted_relevant_history)
     messages.append({"role": "user", "content": user_input})
