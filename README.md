@@ -32,8 +32,8 @@ Roadmap follows a structured plan, but continuous improvements and refinements a
 - **Phase 0 (Current):** Core AI functionality with memory, search integration, and language adaptation.
 - **Phase 1:** Enhancing AI contextual awareness and response quality.
 - **Phase 2:** Business analysis with financial insights and report exports.
-- **Phase 3 (UNDER REVIEW):** POM-QM decision support with operations research features.
-- **Phase 4:** Agriculture AI for crop suitability and sustainability analysis.
+- **Phase 3:** POM-QM decision support with operations research features.
+- **Phase 4 (UNDER REVIEW):** Agriculture AI for crop suitability and sustainability analysis.
 - **Phase 5:** UI/UX refinements and frontend improvements.
 - **Phase 6:** Making the server online for global access.
 - **Exploratory Phase:** Blockchain integration & utility token implementation.
