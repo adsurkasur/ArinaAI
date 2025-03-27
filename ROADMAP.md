@@ -22,7 +22,7 @@ This document outlines the development phases for Arina AI, focusing on enhancin
 - **Export Feature:** Generate CSV/Excel reports for business analysis.
 - **Live Graph & Chart Integration:** Real-time visualization for financial projections and analysis.
 
-## Phase 3: Agricultural & Agroindustrial Intelligence
+## Phase 3: Agricultural & Agroindustrial Intelligence (UNDER REVIEW)
 - **Crop Suitability Analysis:** Recommend best crops based on geographic data.
 - **Satellite Data Utilization:** Integrate external sources for better agricultural insights.
 - **Sustainable Farming Recommendations:** Provide insights on efficient land use and sustainability.
