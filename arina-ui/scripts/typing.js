@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
     const greetingElement = document.getElementById("greeting-text");
-    const greetingText = "Hello! Welcome to Arina AI!";
+    const greetingText = "Hello! How can Arina help?";
     let index = 0;
 
     function type() {
