@@ -45,27 +45,18 @@ document.addEventListener("DOMContentLoaded", function () {
     // Function to add a message to the chat
     function addMessage(text, sender) {
         const messageBubble = document.createElement("div");
-        messageBubble.classList.add("message", sender);
+        messageBubble.classList.add("message");
+        messageBubble.classList.add(sender);
 
-        if (sender !== "error" && sender !== "user") {
-            const profileContainer = document.createElement("div");
-            profileContainer.classList.add("profile-container");
-
+        if (sender === "bot") {
             const profilePic = document.createElement("img");
-            profilePic.classList.add("profile-pic");
-            profilePic.src = "arina-ui/images/arina.jpg";
+            profilePic.classList.add("arina-profile-pic"); // Unique class for Arina's profile picture
+            profilePic.src = "arina-ui/images/arina.jpg"; // Arina's profile picture
 
-            const profileName = document.createElement("span");
-            profileName.classList.add("profile-name");
-            profileName.textContent = "Arina";
-
-            profileContainer.appendChild(profilePic);
-            profileContainer.appendChild(profileName);
-            messageBubble.appendChild(profileContainer);
+            messageBubble.appendChild(profilePic); // Add Arina's profile picture to the chat bubble
         }
 
         const messageText = document.createElement("span");
-        messageText.textContent = text;
         messageText.innerHTML = DOMPurify.sanitize(marked.parse(text)); // Convert Markdown safely
         messageBubble.appendChild(messageText);
 
