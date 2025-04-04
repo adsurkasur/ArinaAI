@@ -412,6 +412,17 @@ footer {
     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2); /* Add shadow for depth */
 }
 
+/* Center the Viewing Mode Toggle */
+.sidebar .viewing-mode-container {
+    display: flex; /* Use Flexbox for centering */
+    align-items: center; /* Center horizontally */
+    justify-content: center; /* Center vertically */
+    padding-top: 20px;
+    text-align: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.1); /* Optional: Add a top border */
+    margin-top: auto; /* Push it to the bottom of the sidebar content */
+}
+
 .sidebar.open {
     transform: translateX(0); /* Show the sidebar */
 }
@@ -479,6 +490,48 @@ footer {
 
 .sidebar-menu a:hover {
     color: var(--send-btn-bg); /* Highlight on hover */
+}
+
+/* Submenu styles */
+.submenu {
+    list-style: none;
+    padding-left: 20px;
+    margin: 0;
+    height: 0; /* Initially hidden */
+    overflow: hidden; /* Hide content when collapsed */
+    transition: height 0.3s ease; /* Smooth height transition */
+}
+
+/* Show submenu when active */
+.submenu.active {
+    height: auto; /* Automatically adjust height based on content */
+}
+
+.submenu li {
+    margin: 15px 0;
+}
+
+.sidebar-menu li a {
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+}
+
+.sidebar-menu li a:hover {
+    color:#4caf50; /* Highlight color on hover */
+}
+
+/* Arrow styles */
+.arrow {
+    font-size: 0.8em;
+    margin-left: 5px;
+    display: inline-block; /* Ensure the arrow is treated as an inline-block element */
+    transition: transform 0.3s ease; /* Smooth rotation */
+}
+
+/* Rotate arrow when submenu is active */
+.rotated {
+    transform: rotate(-180deg); /* Rotate downward arrow to point upward */
 }
 
 .sidebar footer {
