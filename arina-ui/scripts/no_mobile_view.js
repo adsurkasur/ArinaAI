@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const overlay = document.getElementById("mobileOverlay");
 
     const checkWindowSize = () => {
-        if (window.innerWidth < 768) { // Adjust breakpoint as needed
+        if (window.innerWidth < 768 || window.innerHeight < 500) { // Adjust breakpoints as needed
             overlay.style.opacity = "1";
             overlay.style.pointerEvents = "auto"; // Enable interaction when visible
         } else {
