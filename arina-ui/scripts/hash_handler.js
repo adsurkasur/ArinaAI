@@ -52,9 +52,9 @@ function handleHashChange() {
             if (DFPage) DFPage.style.display = "block";
             break;
         }
-        case "#PM": {
-            const PMPage = document.getElementById("PMPage");
-            if (PMPage) PMPage.style.display = "block";
+        case "#MM": {
+            const MMPage = document.getElementById("MMPage");
+            if (MMPage) MMPage.style.display = "block";
             break;
         }
         case "#cultivation": {
