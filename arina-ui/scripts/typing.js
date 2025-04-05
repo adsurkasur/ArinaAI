@@ -11,5 +11,23 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-    type();
+    function handleTypingEffect() {
+        const hash = window.location.hash;
+        const greetingContainer = document.querySelector(".greeting-container");
+
+        if (greetingContainer) {
+            greetingContainer.style.display = hash === "#chat" ? "block" : "none";
+        }
+
+        if (hash === "#chat") {
+            index = 0; // Reset typing effect
+            type();
+        }
+    }
+
+    // Listen for hash changes to trigger the typing effect
+    window.addEventListener("hashchange", handleTypingEffect);
+
+    // Run on initial load
+    handleTypingEffect();
 });

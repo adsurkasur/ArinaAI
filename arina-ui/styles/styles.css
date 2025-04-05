@@ -643,3 +643,13 @@ footer {
     object-fit: cover; /* Ensure the image fits within the circle */
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Add subtle shadow */
 }
+
+/* Center all .page elements vertically and horizontally */
+.page:not(#chatPage) {
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center;    /* Center vertically */
+    height: 100vh;          /* Full viewport height */
+    text-align: center;     /* Center text inside the element */
+    font-size: 2rem;        /* Adjust font size as needed */
+}
