@@ -1,3 +1,9 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
 body {
     font-family: "Rubik", sans-serif;
     transition: background-color 0.3s ease, color 0.3s ease;
@@ -6,6 +12,7 @@ body {
     overflow: hidden; /* Prevent horizontal scrolling */
     display: flex;
     flex-direction: column;
+    align-items: stretch; /* Stretch to fill the viewport */
     height: 100vh; /* Full height of the viewport */
 }
 
@@ -41,18 +48,6 @@ body {
     display: flex;
     align-items: center;
     gap: 10px; /* Space between text and switch */
-}
-
-/* Wrapper to center everything */
-.wrapper {
-    display: flex;
-    flex-direction: column;
-    justify-content: center; /* Center content vertically */
-    align-items: center; /* Center content horizontally */
-    flex-grow: 1; /* Allow wrapper to grow and fill available space */
-    box-sizing: border-box;
-    overflow: auto; /* Enable scrolling if content overflows */
-    padding: 20px;
 }
 
 /* Chat container centered */
@@ -652,4 +647,41 @@ footer {
     height: 100vh;          /* Full viewport height */
     text-align: center;     /* Center text inside the element */
     font-size: 2rem;        /* Adjust font size as needed */
+}
+
+.page .content {
+    text-align: center; /* Ensure text inside the content is centered */
+}
+
+/* Center content inside #chatPage */
+#chatPage {
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center;    /* Center vertically */
+    height: 100vh;          /* Full viewport height */
+    width: 100vw;           /* Full viewport width */
+    flex-direction: column; /* Stack children vertically */
+    margin: 0;              /* Remove any default margin */
+    padding: 0;             /* Remove any default padding */
+    box-sizing: border-box; /* Include padding and border in width/height */
+    overflow: hidden;       /* Prevent any overflow issues */
+}
+
+/* Ensure the wrapper inside #chatPage is centered */
+#chatPage .chat-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Center content vertically */
+    align-items: center;     /* Center content horizontally */
+    width: 100%;             /* Full width */
+    max-width: 800px;        /* Optional: Limit the width */
+    padding: 20px;           /* Add padding for spacing */
+    box-sizing: border-box;  /* Include padding in width/height */
+    text-align: center;      /* Center text inside the wrapper */
+    margin: 0 auto;          /* Center the wrapper horizontally */
+    height: 100%;            /* Ensure the wrapper takes full height of the parent */
+}
+
+#sidebar {
+    position: fixed;
 }
