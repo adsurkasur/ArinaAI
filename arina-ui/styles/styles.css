@@ -644,7 +644,7 @@ footer {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Add subtle shadow */
 }
 
-/* Center all .page elements vertically and horizontally */
+/* Center all .page (except chatPage) elements vertically and horizontally */
 .page:not(#chatPage) {
     display: flex;
     justify-content: center; /* Center horizontally */
