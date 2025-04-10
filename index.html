@@ -131,206 +131,203 @@
 
         <div id="BFAPage" class="page">
             <div class="aku-container content">
-                <body>
-                    <header>
-                        AKU - Analisis Kelayakan Usaha
-                    </header>
-                
-                    <div class="container">
-                        <h2 class="bold">Input Data</h2>
-                
-                        <div class="form-group">
-                            <label>Investment Cost (Biaya Investasi)
-                                <button class="info-btn" data-info="
-                                📌 <strong>Apa itu Investment Cost?</strong><br><br>
-                                Investment Cost adalah biaya awal yang harus dikeluarkan untuk memulai bisnis sebelum bisnis mulai beroperasi dan menghasilkan pendapatan. Biaya ini umumnya termasuk pembelian aset, peralatan, modal kerja, dan perizinan usaha.<br><br>
-                                
-                                💡 <strong>Contoh Investment Cost:</strong><br>
-                                &bull; Pembelian mesin produksi untuk usaha manufaktur.<br>
-                                &bull; Renovasi tempat usaha, seperti restoran atau toko.<br>
-                                &bull; Biaya pendaftaran dan perizinan usaha.<br>
-                                &bull; Pembelian stok awal bahan baku sebelum bisnis berjalan.<br><br>
-                                
-                                📢 <strong>Catatan:</strong> Investment Cost biasanya dibayarkan satu kali di awal dan tidak termasuk dalam biaya operasional bulanan.
-                                ">ⓘ</button>
-                            </label>
-                            <div class="input-with-button">
-                                <input type="number" id="investment" placeholder="Klik tombol [Tambahkan]..." readonly>
-                                <button class="btn-tambah" onclick="openTablePopup('investment')">Tambahkan</button>
-                            </div>
+                <header>
+                    <h2>AKU - Analisis Kelayakan Usaha</h2>
+                </header>
+            
+                <div class="container">
+                    <h2 class="bold">Input Data</h2>
+            
+                    <div class="form-group">
+                        <label>Investment Cost (Biaya Investasi)
+                            <button class="info-btn" data-info="
+                            📌 <strong>Apa itu Investment Cost?</strong><br><br>
+                            Investment Cost adalah biaya awal yang harus dikeluarkan untuk memulai bisnis sebelum bisnis mulai beroperasi dan menghasilkan pendapatan. Biaya ini umumnya termasuk pembelian aset, peralatan, modal kerja, dan perizinan usaha.<br><br>
+                            
+                            💡 <strong>Contoh Investment Cost:</strong><br>
+                            &bull; Pembelian mesin produksi untuk usaha manufaktur.<br>
+                            &bull; Renovasi tempat usaha, seperti restoran atau toko.<br>
+                            &bull; Biaya pendaftaran dan perizinan usaha.<br>
+                            &bull; Pembelian stok awal bahan baku sebelum bisnis berjalan.<br><br>
+                            
+                            📢 <strong>Catatan:</strong> Investment Cost biasanya dibayarkan satu kali di awal dan tidak termasuk dalam biaya operasional bulanan.
+                            ">ⓘ</button>
+                        </label>
+                        <div class="input-with-button">
+                            <input type="number" id="investment" placeholder="Klik tombol [Tambahkan]..." readonly>
+                            <button class="btn-tambah" onclick="openTablePopup('investment')">Tambahkan</button>
                         </div>
-                        
-                        <div class="form-group">
-                            <label>Operational Cost per Bulan (Biaya Operasional per Bulan)
-                                <button class="info-btn" data-info="
-                                📌 <strong>Apa itu Operational Cost?</strong><br><br>
-                                Operational Cost adalah biaya yang harus dikeluarkan setiap bulan untuk menjalankan bisnis. Ini mencakup semua pengeluaran rutin yang dibutuhkan agar usaha bisa terus berjalan.<br><br>
-                                
-                                💡 <strong>Contoh Biaya Operasional:</strong><br>
-                                &bull; Gaji karyawan.<br>
-                                &bull; Bahan baku untuk produksi.<br>
-                                &bull; Listrik, air, dan internet.<br>
-                                &bull; Sewa tempat usaha.<br><br>
-                                
-                                📢 <strong>Catatan:</strong> Biaya operasional berbeda dari investasi awal karena dikeluarkan secara berkala (bulanan).
-                                ">ⓘ</button>
-                            </label>
-                            <div class="input-with-button">
-                                <input type="number" id="operational" placeholder="Klik tombol [Tambahkan]..." readonly>
-                                <button class="btn-tambah" onclick="openTablePopup('operational')">Tambahkan</button>
-                            </div>
-                        </div>        
-                
-                        <div class="form-group">
-                            <label>Biaya Produksi per Unit 
-                                <button class="info-btn" data-info="
-                                📌 <strong>Apa itu Biaya Produksi per Unit?</strong><br><br>
-                                Biaya produksi per unit adalah biaya yang harus dikeluarkan untuk memproduksi satu unit barang atau jasa. Ini mencakup semua biaya langsung yang terkait dengan produksi.<br><br>
-                                
-                                💡 <strong>Komponen Biaya Produksi per Unit:</strong><br>
-                                &bull; Bahan baku, seperti tepung dan gula untuk produksi roti.<br>
-                                &bull; Tenaga kerja langsung.<br>
-                                &bull; Biaya listrik atau penggunaan mesin.<br><br>
-                                
-                                💡 <strong>Contoh:</strong> Jika biaya bahan baku dan produksi satu roti adalah Rp 15.000, maka Rp 15.000 adalah biaya produksi per unit.<br><br>
-                                
-                                📢 <strong>Catatan:</strong> Pastikan harga jual lebih tinggi dari biaya produksi agar bisnis tidak merugi!
-                                ">ⓘ</button>
-                            </label>
-                            <input type="number" id="biayaProduksi" placeholder="Masukkan biaya produksi per unit...">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Operational Cost per Bulan (Biaya Operasional per Bulan)
+                            <button class="info-btn" data-info="
+                            📌 <strong>Apa itu Operational Cost?</strong><br><br>
+                            Operational Cost adalah biaya yang harus dikeluarkan setiap bulan untuk menjalankan bisnis. Ini mencakup semua pengeluaran rutin yang dibutuhkan agar usaha bisa terus berjalan.<br><br>
+                            
+                            💡 <strong>Contoh Biaya Operasional:</strong><br>
+                            &bull; Gaji karyawan.<br>
+                            &bull; Bahan baku untuk produksi.<br>
+                            &bull; Listrik, air, dan internet.<br>
+                            &bull; Sewa tempat usaha.<br><br>
+                            
+                            📢 <strong>Catatan:</strong> Biaya operasional berbeda dari investasi awal karena dikeluarkan secara berkala (bulanan).
+                            ">ⓘ</button>
+                        </label>
+                        <div class="input-with-button">
+                            <input type="number" id="operational" placeholder="Klik tombol [Tambahkan]..." readonly>
+                            <button class="btn-tambah" onclick="openTablePopup('operational')">Tambahkan</button>
                         </div>
-                
-                        <div class="form-group">
-                            <label>Volume Penjualan per Bulan 
-                                <button class="info-btn" data-info="
-                                📌 <strong>Apa itu Volume Penjualan per Bulan?</strong><br><br>
-                                Volume penjualan per bulan adalah jumlah unit produk yang diperkirakan terjual dalam satu bulan. Angka ini penting karena menentukan total pendapatan dan profitabilitas usaha.<br><br>
-                                
-                                💡 <strong>Cara Menentukan Volume Penjualan:</strong><br>
-                                &bull; Gunakan data penjualan sebelumnya (jika bisnis sudah berjalan).<br>
-                                &bull; Lakukan riset pasar untuk memperkirakan permintaan.<br>
-                                &bull; Sesuaikan dengan kapasitas produksi agar bisa memenuhi target penjualan.<br><br>
-                                
-                                💡 <strong>Contoh:</strong> Jika bisnis kamu menjual 500 botol jus buah setiap bulan, maka volume penjualan per bulan adalah 500 unit.<br><br>
-                                
-                                📢 <strong>Catatan:</strong> Jika volume penjualan meningkat, maka profit juga meningkat, tetapi pastikan bisnis mampu memenuhi permintaan pasar!
-                                ">ⓘ</button>
-                            </label>
-                            <input type="number" id="volume" placeholder="Masukkan volume penjualan per bulan...">
-                        </div>
-                
-                        <div class="form-group">
-                            <label>Markup (%) 
-                                <button class="info-btn" data-info="
-                                📌 <strong>Apa itu Markup?</strong><br><br>
-                                Markup adalah persentase keuntungan yang ditambahkan ke biaya produksi untuk menentukan harga jual.<br><br>
-                        
-                                💡 <strong>Cara Menghitung:</strong><br>
-                                Harga Jual = Biaya Produksi + (Markup% × Biaya Produksi)<br><br>
-                        
-                                📢 <strong>Catatan:</strong> 
-                                - Markup yang terlalu rendah bisa membuat bisnis merugi.<br>
-                                - Markup yang terlalu tinggi bisa membuat produk sulit bersaing di pasar.
-                                ">ⓘ</button>
-                            </label>
-                            <input type="number" id="markup" placeholder="Masukkan persentase markup...">
-                        </div>
-                
-                        <button onclick="hitungAnalisis()" class="btn-hitung">Hitung</button>
-                        <button onclick="exportToXlsx()" class="btn-export">Ekspor ke XLSX</button>
-                        <input type="file" id="fileInput" accept=".xlsx" style="display: none;" onchange="importFromXlsx(event)">
-                        <button onclick="document.getElementById('fileInput').click()" class="btn-import">Impor dari XLSX</button>
-                
-                        <h2 class="hasil-analisis">Hasil Analisis</h2>
-                        <button onclick="toggleFormatBep()" class="btn-toggle">Ubah Format BEP</button>
-                        <table>
-                            <tr><td>Harga Pokok Produksi (HPP) per unit</td><td id="hpp">-</td></tr>
-                            <tr><td>Harga Jual per Unit</td><td id="hargaJual">-</td></tr>
-                            <tr><td>Revenue (Pendapatan)</td><td id="revenue">-</td></tr>
-                            <tr><td>Profit (Laba Bersih)</td><td id="profit">-</td></tr>
-                            <tr><td>ROI (Return on Investment)</td><td id="roi">-</td></tr>
-                            <tr><td>BEP (Break Even Point)</td><td id="bep">-</td></tr>
-                            <tr><td>Payback Period</td><td id="pp">-</td></tr>
-                            <tr><td>Profit Margin</td><td id="profit-margin">-</td></tr>
-                            <p><strong>Metode Perhitungan:</strong> <span id="metode"></span></p>
+                    </div>        
+            
+                    <div class="form-group">
+                        <label>Biaya Produksi per Unit 
+                            <button class="info-btn" data-info="
+                            📌 <strong>Apa itu Biaya Produksi per Unit?</strong><br><br>
+                            Biaya produksi per unit adalah biaya yang harus dikeluarkan untuk memproduksi satu unit barang atau jasa. Ini mencakup semua biaya langsung yang terkait dengan produksi.<br><br>
+                            
+                            💡 <strong>Komponen Biaya Produksi per Unit:</strong><br>
+                            &bull; Bahan baku, seperti tepung dan gula untuk produksi roti.<br>
+                            &bull; Tenaga kerja langsung.<br>
+                            &bull; Biaya listrik atau penggunaan mesin.<br><br>
+                            
+                            💡 <strong>Contoh:</strong> Jika biaya bahan baku dan produksi satu roti adalah Rp 15.000, maka Rp 15.000 adalah biaya produksi per unit.<br><br>
+                            
+                            📢 <strong>Catatan:</strong> Pastikan harga jual lebih tinggi dari biaya produksi agar bisnis tidak merugi!
+                            ">ⓘ</button>
+                        </label>
+                        <input type="number" id="biayaProduksi" placeholder="Masukkan biaya produksi per unit...">
+                    </div>
+            
+                    <div class="form-group">
+                        <label>Volume Penjualan per Bulan 
+                            <button class="info-btn" data-info="
+                            📌 <strong>Apa itu Volume Penjualan per Bulan?</strong><br><br>
+                            Volume penjualan per bulan adalah jumlah unit produk yang diperkirakan terjual dalam satu bulan. Angka ini penting karena menentukan total pendapatan dan profitabilitas usaha.<br><br>
+                            
+                            💡 <strong>Cara Menentukan Volume Penjualan:</strong><br>
+                            &bull; Gunakan data penjualan sebelumnya (jika bisnis sudah berjalan).<br>
+                            &bull; Lakukan riset pasar untuk memperkirakan permintaan.<br>
+                            &bull; Sesuaikan dengan kapasitas produksi agar bisa memenuhi target penjualan.<br><br>
+                            
+                            💡 <strong>Contoh:</strong> Jika bisnis kamu menjual 500 botol jus buah setiap bulan, maka volume penjualan per bulan adalah 500 unit.<br><br>
+                            
+                            📢 <strong>Catatan:</strong> Jika volume penjualan meningkat, maka profit juga meningkat, tetapi pastikan bisnis mampu memenuhi permintaan pasar!
+                            ">ⓘ</button>
+                        </label>
+                        <input type="number" id="volume" placeholder="Masukkan volume penjualan per bulan...">
+                    </div>
+            
+                    <div class="form-group">
+                        <label>Markup (%) 
+                            <button class="info-btn" data-info="
+                            📌 <strong>Apa itu Markup?</strong><br><br>
+                            Markup adalah persentase keuntungan yang ditambahkan ke biaya produksi untuk menentukan harga jual.<br><br>
+                    
+                            💡 <strong>Cara Menghitung:</strong><br>
+                            Harga Jual = Biaya Produksi + (Markup% × Biaya Produksi)<br><br>
+                    
+                            📢 <strong>Catatan:</strong> 
+                            - Markup yang terlalu rendah bisa membuat bisnis merugi.<br>
+                            - Markup yang terlalu tinggi bisa membuat produk sulit bersaing di pasar.
+                            ">ⓘ</button>
+                        </label>
+                        <input type="number" id="markup" placeholder="Masukkan persentase markup...">
+                    </div>
+            
+                    <button onclick="hitungAnalisis()" class="btn-hitung">Hitung</button>
+                    <button onclick="exportToXlsx()" class="btn-export">Ekspor ke XLSX</button>
+                    <input type="file" id="fileInput" accept=".xlsx" style="display: none;" onchange="importFromXlsx(event)">
+                    <button onclick="document.getElementById('fileInput').click()" class="btn-import">Impor dari XLSX</button>
+            
+                    <h2 class="hasil-analisis">Hasil Analisis</h2>
+                    <button onclick="toggleFormatBep()" class="btn-toggle">Ubah Format BEP</button>
+                    <table>
+                        <tr><td>Harga Pokok Produksi (HPP) per unit</td><td id="hpp">-</td></tr>
+                        <tr><td>Harga Jual per Unit</td><td id="hargaJual">-</td></tr>
+                        <tr><td>Revenue (Pendapatan)</td><td id="revenue">-</td></tr>
+                        <tr><td>Profit (Laba Bersih)</td><td id="profit">-</td></tr>
+                        <tr><td>ROI (Return on Investment)</td><td id="roi">-</td></tr>
+                        <tr><td>BEP (Break Even Point)</td><td id="bep">-</td></tr>
+                        <tr><td>Payback Period</td><td id="pp">-</td></tr>
+                        <tr><td>Profit Margin</td><td id="profit-margin">-</td></tr>
+                        <p><strong>Metode Perhitungan:</strong> <span id="metode"></span></p>
+                    </table>
+                </div>
+            
+                <!-- Pop-up -->
+                <div id="popup">
+                    <div id="popup-content">
+                        <span id="close-popup"><i class="fas fa-times"></i></span>
+                        <p id="popup-text"></p>
+                    </div>
+                </div>
+            
+                <!-- Pop-up Info -->
+                <div id="popupInfo" class="popup hidden">
+                    <div class="popup-content">
+                        <button id="closePopup" class="close">
+                            <i class="fas fa-xmark"></i>
+                        </button>
+                        <p id="popupText">Isi informasi di sini...</p>
+                    </div>
+                </div>
+            
+                <!-- Pop-up Investment Cost -->
+                <div id="investmentPopup" class="popup hidden">
+                    <div class="popup-content">
+                        <span class="close" onclick="closeTablePopup('investmentPopup')">&times;</span>
+                        <h2 class="bold">Investment Cost (Biaya Investasi)</h2>
+                        <button class="btn-tambah" onclick="addRow('investmentTable')">Tambah Baris</button>
+                        <table id="investmentTable">
+                            <thead>
+                                <tr>
+                                    <th>Nama</th>
+                                    <th>Kuantitas</th>
+                                    <th>Harga (Rp)</th>
+                                    <th>Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
                         </table>
                     </div>
-                
-                    <!-- Pop-up -->
-                    <div id="popup">
-                        <div id="popup-content">
-                            <span id="close-popup"><i class="fas fa-times"></i></span>
-                            <p id="popup-text"></p>
-                        </div>
+                </div>
+            
+                <!-- Pop-up Operational Cost -->
+                <div id="operationalPopup" class="popup hidden">
+                    <div class="popup-content">
+                        <span class="close" onclick="closeTablePopup('operationalPopup')">&times;</span>
+                        <h2 class="bold">Operational Cost per Bulan (Biaya Operasional per Bulan)</h2>
+                        <button class="btn-tambah" onclick="addRow('operationalTable')">Tambah Baris</button>
+                        <table id="operationalTable">
+                            <thead>
+                                <tr>
+                                    <th>Nama</th>
+                                    <th>Kuantitas</th>
+                                    <th>Harga (Rp)</th>
+                                    <th>Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
                     </div>
-                
-                    <!-- Pop-up Info -->
-                    <div id="popupInfo" class="popup hidden">
-                        <div class="popup-content">
-                            <button id="closePopup" class="close">
-                                <i class="fas fa-xmark"></i>
-                            </button>
-                            <p id="popupText">Isi informasi di sini...</p>
-                        </div>
+                </div>
+            
+            
+                <!-- Footer -->
+                <footer class="text-center mt-5 text-gray-700">
+                    <p>Dibuat oleh adsurkasur (dengan bantuan AI)</p>
+                    <div class="footer-icons flex justify-center mt-2 space-x-3">
+                        <a href="https://twitter.com/adsurkasur" target="_blank">
+                            <i class="fab fa-x-twitter"></i> <!-- Ikon Twitter sesuai referensi -->
+                        </a>
+                        <a href="https://github.com/adsurkasur" target="_blank">
+                            <i class="fab fa-github"></i> <!-- Ikon GitHub -->
+                        </a>
                     </div>
-                
-                    <!-- Pop-up Investment Cost -->
-                    <div id="investmentPopup" class="popup hidden">
-                        <div class="popup-content">
-                            <span class="close" onclick="closeTablePopup('investmentPopup')">&times;</span>
-                            <h2 class="bold">Investment Cost (Biaya Investasi)</h2>
-                            <button class="btn-tambah" onclick="addRow('investmentTable')">Tambah Baris</button>
-                            <table id="investmentTable">
-                                <thead>
-                                    <tr>
-                                        <th>Nama</th>
-                                        <th>Kuantitas</th>
-                                        <th>Harga (Rp)</th>
-                                        <th>Aksi</th>
-                                    </tr>
-                                </thead>
-                                <tbody></tbody>
-                            </table>
-                        </div>
-                    </div>
-                
-                    <!-- Pop-up Operational Cost -->
-                    <div id="operationalPopup" class="popup hidden">
-                        <div class="popup-content">
-                            <span class="close" onclick="closeTablePopup('operationalPopup')">&times;</span>
-                            <h2 class="bold">Operational Cost per Bulan (Biaya Operasional per Bulan)</h2>
-                            <button class="btn-tambah" onclick="addRow('operationalTable')">Tambah Baris</button>
-                            <table id="operationalTable">
-                                <thead>
-                                    <tr>
-                                        <th>Nama</th>
-                                        <th>Kuantitas</th>
-                                        <th>Harga (Rp)</th>
-                                        <th>Aksi</th>
-                                    </tr>
-                                </thead>
-                                <tbody></tbody>
-                            </table>
-                        </div>
-                    </div>
-                
-                
-                    <!-- Footer -->
-                    <footer class="text-center mt-5 text-gray-700">
-                        <p>Dibuat oleh adsurkasur (dengan bantuan AI)</p>
-                        <div class="footer-icons flex justify-center mt-2 space-x-3">
-                            <a href="https://twitter.com/adsurkasur" target="_blank">
-                                <i class="fab fa-x-twitter"></i> <!-- Ikon Twitter sesuai referensi -->
-                            </a>
-                            <a href="https://github.com/adsurkasur" target="_blank">
-                                <i class="fab fa-github"></i> <!-- Ikon GitHub -->
-                            </a>
-                        </div>
-                    </footer>
-                
-                    <script src="script.js"></script>
-                </body>
-              <div id="bfaContentContainer"></div>
+                </footer>
+            
+                <script src="script.js"></script>
             </div>
           </div>
 

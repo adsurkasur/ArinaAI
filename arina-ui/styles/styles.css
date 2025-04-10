@@ -27,6 +27,7 @@ body {
     --send-btn-text: white;
     --overlay-bg: rgba(245, 245, 245, 0.9); /* Light mode: semi-transparent white */
     --divider-color: rgba(0, 0, 0, 0.1); /* Light gray for light mode */
+    --placeholder-color: #aaa; /* Light gray for placeholder text */
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
@@ -41,6 +42,7 @@ body {
     --send-btn-text: white;
     --overlay-bg: rgba(18, 18, 18, 0.9); /* Dark mode: semi-transparent black */
     --divider-color: rgba(255, 255, 255, 0.1); /* Light white for dark mode */
+    --placeholder-color: #5e5e5e; /* Light gray for placeholder text */
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
@@ -379,7 +381,26 @@ footer {
     z-index: 9999;
 }
 
-/* Sidebar styles */
+/* Add keyframes for slide-in and slide-out animations */
+@keyframes slideIn {
+    from {
+        transform: translateX(-100%);
+    }
+    to {
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideOut {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(-100%);
+    }
+}
+
+/* Apply the animations to the sidebar */
 .sidebar {
     position: fixed;
     top: 0;
@@ -392,14 +413,15 @@ footer {
     flex-direction: column; /* Stack items vertically */
     justify-content: space-between; /* Push footer to the bottom */
     overflow-x: hidden;
-    transition: transform 0.3s, background-color 0.3s, color 0.3s; /* Unified transition */
     transform: translateX(-100%); /* Initially hidden */
     z-index: 1000; /* Ensure it appears above other elements */
     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2); /* Add shadow for depth */
+    animation: slideOut 0.3s ease forwards; /* Default to slide-out animation */
 }
 
 .sidebar.open {
     transform: translateX(0); /* Show the sidebar */
+    animation: slideIn 0.3s ease forwards; /* Apply slide-in animation */
 }
 
 /* Center the Viewing Mode Toggle */
@@ -425,7 +447,6 @@ footer {
     border-radius: 50%; /* Make it a circle */
     cursor: pointer;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-    z-index: 1001; /* Ensure it appears above the sidebar */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -761,58 +782,146 @@ footer {
 
 .aku-container {
     background-color: var(--chat-bg);
-    padding: 40px;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    max-width: 1000px;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
     width: 100%;
-    margin: 0 auto;
+    margin: 20px auto;
     overflow-y: auto;
-}
-
-.aku-container h2,
-.aku-container label {
     color: var(--input-text);
 }
 
-.input-with-button {
+.aku-container h2 {
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin-bottom: 20px;
+    color: var(--send-btn-bg);
+}
+
+.aku-container label {
+    font-size: 1rem;
+    font-weight: 500;
+    margin-bottom: 5px;
+    display: block;
+    color: var(--input-text);
+}
+
+.aku-container .form-group {
+    margin-bottom: 20px;
+}
+
+.aku-container input[type="number"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--divider-color);
+    border-radius: 5px;
+    background-color: var(--input-bg);
+    color: var(--input-text);
+    font-size: 1rem;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
+}
+
+.aku-container input[type="number"]:focus {
+    border-color: var(--send-btn-bg);
+    outline: none;
+}
+
+.aku-container .input-with-button {
     display: flex;
     gap: 10px;
     align-items: center;
 }
 
-.btn-tambah, .btn-hitung, .btn-export, .btn-import, .btn-toggle {
-    margin-top: 10px;
+.aku-container .btn-tambah,
+.aku-container .btn-hitung,
+.aku-container .btn-export,
+.aku-container .btn-import,
+.aku-container .btn-toggle {
     background-color: var(--send-btn-bg);
     color: white;
     padding: 10px 15px;
-    border-radius: 8px;
+    border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.2s ease;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+    border: none;
 }
 
-.btn-tambah:hover,
-.btn-hitung:hover,
-.btn-export:hover,
-.btn-import:hover,
-.btn-toggle:hover {
+.aku-container .btn-tambah:hover,
+.aku-container .btn-hitung:hover,
+.aku-container .btn-export:hover,
+.aku-container .btn-import:hover,
+.aku-container .btn-toggle:hover {
     background-color: #388e3c;
 }
 
-table {
+.aku-container table {
     width: 100%;
     margin-top: 20px;
     border-collapse: collapse;
-    background: white;
+    background-color: var(--input-bg);
+    color: var(--input-text);
+    border: 1px solid var(--divider-color);
 }
 
-table, th, td {
-    border: 1px solid #ccc;
-}
-
-th, td {
+.aku-container table th,
+.aku-container table td {
     padding: 10px;
     text-align: left;
+    border: 1px solid var(--divider-color);
+}
+
+.aku-container table th {
+    background-color: var(--send-btn-bg);
+    color: white;
+    font-weight: 500;
+}
+
+.aku-container table td {
+    background-color: var(--chat-bg);
+}
+
+.aku-container .popup-content {
+    background-color: var(--chat-bg);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    max-width: 600px;
+    width: 90%;
+    position: relative;
+    color: var(--input-text);
+}
+
+.aku-container .popup .close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    color: var(--input-text);
+}
+
+/* Ensure uniform spacing for buttons */
+.aku-container button {
+    margin-top: 10px;
+}
+
+/* Styling for info buttons */
+.aku-container .info-btn {
+    background: none;
+    border: none;
+    color: var(--send-btn-bg);
+    font-size: 1rem;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.aku-container .info-btn:hover {
+    color: #388e3c;
 }
 
 .popup {
@@ -851,4 +960,67 @@ th, td {
 
 .popup.hidden {
     display: none; /* Ensure hidden class hides the pop-up */
+}
+
+.aku-container input[readonly] {
+    background-color: var(--input-bg);
+    color: var(--placeholder-color); /* Use theme-specific placeholder color */
+    cursor: not-allowed; /* Show disabled pointer */
+    border: 1px solid var(--divider-color) !important; /* Use theme-specific border color */
+    box-shadow: none; /* Remove any glow effect */
+}
+
+.aku-container input[readonly]::placeholder {
+    color: var(--placeholder-color); /* Use theme-specific placeholder color */
+    cursor: not-allowed; /* Show disabled pointer for placeholder */
+}
+
+.light-mode, .dark-mode {
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.chat-container, .chat-box, .sidebar, .aku-container, .popup-content, .profile-popup {
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+button, input, textarea, table, th, td {
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+input, textarea {
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+input:focus, textarea:focus {
+    background-color: var(--input-bg);
+    color: var(--input-text);
+    border-color: var(--send-btn-bg);
+    box-shadow: 0 0 5px var(--send-btn-bg);
+}
+
+input, textarea, button {
+    font-family: "Rubik", sans-serif; /* Unified font */
+    font-size: 16px; /* Unified font size */
+    color: var(--input-text); /* Unified text color */
+    box-sizing: border-box; /* Ensure consistent box model */
+    border-radius: 5px; /* Unified border radius */
+    padding: 10px; /* Unified padding */
+    border: 1px solid var(--divider-color); /* Unified border style */
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+input:focus, textarea:focus, button:focus {
+    outline: none; /* Remove default outline */
+    border-color: var(--send-btn-bg); /* Highlight border on focus */
+    box-shadow: 0 0 5px var(--send-btn-bg); /* Add focus shadow */
+}
+
+textarea {
+    resize: none; /* Disable resizing for textareas */
+    overflow-y: auto; /* Enable vertical scrolling */
+}
+
+input::placeholder, textarea::placeholder {
+    color: var(--placeholder-color); /* Unified placeholder color */
+    font-style: italic; /* Optional: Italicize placeholder text */
 }
