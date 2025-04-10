@@ -25,6 +25,16 @@
         <div class="profile-placeholder">
             <img class="user-profile-pic" src="https://avataaars.io/" alt="User Profile Picture" />
         </div>
+        
+        <!-- Profile Popup -->
+        <div class="profile-popup" id="profilePopup">
+            <ul>
+                <li><strong id="profileUserName">{user}</strong></li> <!-- Dynamic user name -->
+                <li><a href="#profile">View Profile</a></li>
+                <li><a href="#settings">Settings</a></li>
+                <li><a href="#logout">Logout</a></li>
+            </ul>
+        </div>
     </div>
 
     <!-- Sidebar -->
@@ -33,7 +43,7 @@
             <h1><a href="https://github.com/adsurkasur/ArinaAI" style="text-decoration: none; color: inherit;">Arina AI</a></h1>
         </div>
         <ul class="sidebar-menu">
-            <li><a href="#home">Home</a></li>
+            <li><a href="https://radit024.github.io/Landingpage-Arina/">Home</a></li>
             <li><a href="#chat">Chat</a></li>
             <li>
                 <a href="#features" id="featuresToggle">Features <span class="arrow">&#9662;</span></a>
@@ -86,101 +96,97 @@
         <i class="fas fa-chevron-right"></i> <!-- Arrow icon -->
     </button>
 
-    <div id="chatPage" class="page">
-        <div class="chat-wrapper"> <!-- Wrapper to group centered elements -->
-            <div class="greeting-container" style="text-align: center; margin-bottom: 20px;">
-                <h2 class="typing-greeting"><span id="greeting-text"></span><span class="blinking-cursor"></span></h2>
-            </div>
-            
-            <main>
-                <div class="chat-container">
-                    <div id="chatBox" class="chat-box"></div>
-                    <div class="input-container">
-                        <textarea id="chatInput" placeholder="Type a message..."></textarea> <!-- Ensure input is enabled -->
-                        <button id="sendButton" disabled>
-                            <i class="fas fa-paper-plane"></i>
-                        </button>
-                    </div>
+    <div id="mainContent">
+        <div id="chatPage" class="page">
+            <div class="chat-wrapper"> <!-- Wrapper to group centered elements -->
+                <div class="greeting-container" style="text-align: center; margin-bottom: 20px;">
+                    <h2 class="typing-greeting"><span id="greeting-text"></span><span class="blinking-cursor"></span></h2>
                 </div>
-            </main>
+                
+                <main>
+                    <div class="chat-container">
+                        <div id="chatBox" class="chat-box"></div>
+                        <div class="input-container">
+                            <textarea id="chatInput" placeholder="Type a message..."></textarea> <!-- Ensure input is enabled -->
+                            <button id="sendButton" disabled>
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                        </div>
+                    </div>
+                </main>
+            </div>
         </div>
-    </div>
 
-    <div id="homePage" class="page">
-        <div class="content">
-            <h1>This is #home page</h1>
+        <div id="featuresPage" class="page">
+            <div class="content">
+                <h1>This is #features page</h1>
+            </div>
         </div>
-    </div>
 
-    <div id="featuresPage" class="page">
-        <div class="content">
-            <h1>This is #features page</h1>
+        <div id="manufacturePage" class="page">
+            <div class="content">
+                <h1>This is #manufacture page</h1>
+            </div>
         </div>
-    </div>
 
-    <div id="manufacturePage" class="page">
-        <div class="content">
-            <h1>This is #manufacture page</h1>
+        <div id="BFAPage" class="page">
+            <div class="content">
+                <h1>This is #BFA page</h1>
+            </div>
         </div>
-    </div>
 
-    <div id="BFAPage" class="page">
-        <div class="content">
-            <h1>This is #BFA page</h1>
+        <div id="DFPage" class="page">
+            <div class="content">
+                <h1>This is #DF page</h1>
+            </div>
         </div>
-    </div>
 
-    <div id="DFPage" class="page">
-        <div class="content">
-            <h1>This is #DF page</h1>
+        <div id="MMPage" class="page">
+            <div class="content">
+                <h1>This is #MM page</h1>
+            </div>
         </div>
-    </div>
 
-    <div id="MMPage" class="page">
-        <div class="content">
-            <h1>This is #MM page</h1>
+        <div id="cultivationPage" class="page">
+            <div class="content">
+                <h1>This is #cultivation page</h1>
+            </div>
         </div>
-    </div>
 
-    <div id="cultivationPage" class="page">
-        <div class="content">
-            <h1>This is #cultivation page</h1>
+        <div id="seasonalPage" class="page">
+            <div class="content">
+                <h1>This is #seasonal page</h1>
+            </div>
         </div>
-    </div>
 
-    <div id="seasonalPage" class="page">
-        <div class="content">
-            <h1>This is #seasonal page</h1>
+        <div id="annualPage" class="page">
+            <div class="content">
+                <h1>This is #annual page</h1>
+            </div>
         </div>
-    </div>
 
-    <div id="annualPage" class="page">
-        <div class="content">
-            <h1>This is #annual page</h1>
+        <div id="BMCPage" class="page">
+            <div class="content">
+                <h1>This is #BMC page</h1>
+            </div>
         </div>
-    </div>
 
-    <div id="BMCPage" class="page">
-        <div class="content">
-            <h1>This is #BMC page</h1>
+        <div id="SWOTPage" class="page">
+            <div class="content">
+                <h1>This is #SWOT page</h1>
+            </div>
         </div>
-    </div>
 
-    <div id="SWOTPage" class="page">
-        <div class="content">
-            <h1>This is #SWOT page</h1>
+        <div id="aboutPage" class="page">
+            <div class="content">
+                <h1>This is #about page</h1>
+            </div>
         </div>
-    </div>
 
-    <div id="aboutPage" class="page">
-        <div class="content">
-            <h1>This is #about page</h1>
-        </div>
-    </div>
-
-    <div id="contactPage" class="page">
-        <div class="content">
-            <h1>This is #contact page</h1>
+        <div id="contactPage" class="page">
+            <div class="content">
+                <h1>This is #contact page</h1>
+            </div>
         </div>
     </div>
 

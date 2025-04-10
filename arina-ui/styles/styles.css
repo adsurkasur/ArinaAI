@@ -392,10 +392,14 @@ footer {
     flex-direction: column; /* Stack items vertically */
     justify-content: space-between; /* Push footer to the bottom */
     overflow-x: hidden;
-    transition: transform 0.3s ease, background-color 0.3s ease, color 0.3s ease; /* Smooth transition for showing/hiding */
+    transition: transform 0.3s, background-color 0.3s, color 0.3s; /* Unified transition */
     transform: translateX(-100%); /* Initially hidden */
     z-index: 1000; /* Ensure it appears above other elements */
     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2); /* Add shadow for depth */
+}
+
+.sidebar.open {
+    transform: translateX(0); /* Show the sidebar */
 }
 
 /* Center the Viewing Mode Toggle */
@@ -409,15 +413,10 @@ footer {
     margin-top: auto; /* Push it to the bottom of the sidebar content */
 }
 
-.sidebar.open {
-    transform: translateX(0); /* Show the sidebar */
-}
-
-/* Toggle button styles */
 .sidebar-toggle {
     position: fixed;
-    top: 50%; /* Center vertically */
-    left: calc(250px - 5px);
+    top: 3%; /* Center vertically */
+    left: calc(270px); /* Move slightly to the right */
     transform: translate(-50%, -50%); /* Adjust position to center the button */
     background-color: #4caf50; /* Green background */
     color: white; /* White arrow */
@@ -437,13 +436,19 @@ footer {
 
 /* When the sidebar is hidden, move the toggle button to the left */
 .sidebar:not(.open) + .sidebar-toggle {
-    left: calc(0px - 5px); 
+    left: calc(20px); 
 }
 
 /* Rotate the arrow when the sidebar is open */
 .sidebar.open + .sidebar-toggle i {
-    transform: rotate(180deg); /* Rotate the arrow */
-    transition: transform 0.3s ease; /* Smooth rotation */
+    transform: rotate(-180deg); /* Rotate the arrow */
+    transition: transform 0.3s ease; /* Add 5 seconds animation */
+}
+
+/* Reset the arrow rotation when the sidebar is closed */
+.sidebar:not(.open) + .sidebar-toggle i {
+    transform: rotate(0deg); /* Reset rotation */
+    transition: transform 0.3s ease; /* Add 5 seconds animation */
 }
 
 /* Center the arrow inside the circle */
@@ -468,7 +473,7 @@ footer {
 }
 
 .sidebar-header:hover {
-    font-size: 1.2em; /* Slightly increase font size on hover */
+    font-size: 1.2em; 
     color: var(--send-btn-bg); /* Change text color to highlight */
     border-color: var(--send-btn-bg); /* Change border color */
 }
@@ -682,6 +687,74 @@ footer {
     height: 100%;            /* Ensure the wrapper takes full height of the parent */
 }
 
+/* Main content container */
+#mainContent {
+    transition: margin-left 0.3s ease, width 0.3s ease; /* Smooth transition */
+    margin: 0 auto; /* Center horizontally */
+    display: flex; /* Enable Flexbox */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    width: calc(100% - 250px); /* Default width when sidebar is open */
+}
+
+/* When the sidebar is closed */
+.sidebar:not(.open) ~ #mainContent {
+    margin-left: 0; /* Reset margin */
+    width: 100%; /* Full width */
+}
+
+/* When the sidebar is open */
+.sidebar.open ~ #mainContent {
+    margin-left: 250px; /* Match the sidebar width */
+    width: calc(100% - 250px); /* Adjust width dynamically */
+}
+
 #sidebar {
     position: fixed;
+}
+
+/* Profile Popup Styles */
+.profile-popup {
+    position: absolute;
+    top: 60px; /* Adjust based on the profile container's position */
+    right: 10px;
+    background-color: var(--chat-bg); /* Use theme background color */
+    border: 1px solid var(--divider-color); /* Use theme divider color */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    opacity: 0; /* Start hidden */
+    visibility: hidden; /* Prevent interaction when hidden */
+    z-index: 1000;
+    width: 200px;
+    color: var(--input-text); /* Use theme text color */
+    transition: opacity 0.3s, visibility 0.3s, background-color 0.3s, color 0.3s; /* Unified transition */
+}
+
+.profile-popup.show {
+    opacity: 1; /* Fully visible */
+    visibility: visible; /* Allow interaction */
+}
+
+.profile-popup ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.profile-popup li {
+    padding: 8px 12px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s; /* Unified transition */
+}
+
+.profile-popup li:hover {
+    background-color: var(--input-bg); /* Use theme input background color */
+}
+
+.profile-popup a {
+    text-decoration: none;
+    color: inherit; /* Inherit theme text color */
+    transition: color 0.3s; /* Unified transition */
 }

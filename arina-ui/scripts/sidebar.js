@@ -1,9 +1,11 @@
 document.addEventListener("DOMContentLoaded", () => {
     const sidebar = document.getElementById("sidebar");
     const toggleButton = document.getElementById("toggleSidebar");
+    const mainContent = document.getElementById("mainContent");
 
     toggleButton.addEventListener("click", () => {
         sidebar.classList.toggle("open"); // Toggle the "open" class
+        mainContent.classList.toggle("shifted"); // Optional: Add a class for shifted state
     });
 
     // Select all menu items that have submenus
