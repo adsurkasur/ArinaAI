@@ -758,3 +758,97 @@ footer {
     color: inherit; /* Inherit theme text color */
     transition: color 0.3s; /* Unified transition */
 }
+
+.aku-container {
+    background-color: var(--chat-bg);
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    max-width: 1000px;
+    width: 100%;
+    margin: 0 auto;
+    overflow-y: auto;
+}
+
+.aku-container h2,
+.aku-container label {
+    color: var(--input-text);
+}
+
+.input-with-button {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.btn-tambah, .btn-hitung, .btn-export, .btn-import, .btn-toggle {
+    margin-top: 10px;
+    background-color: var(--send-btn-bg);
+    color: white;
+    padding: 10px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.btn-tambah:hover,
+.btn-hitung:hover,
+.btn-export:hover,
+.btn-import:hover,
+.btn-toggle:hover {
+    background-color: #388e3c;
+}
+
+table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+    background: white;
+}
+
+table, th, td {
+    border: 1px solid #ccc;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+}
+
+.popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none; /* Hidden by default */
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    z-index: 1000;
+}
+
+.popup-content {
+    background-color: var(--chat-bg);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    max-width: 600px;
+    width: 90%;
+    position: relative;
+}
+
+.popup .close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    color: var(--input-text);
+}
+
+.popup.hidden {
+    display: none; /* Ensure hidden class hides the pop-up */
+}
