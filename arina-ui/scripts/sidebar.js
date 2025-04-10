@@ -1,4 +1,9 @@
 document.addEventListener("DOMContentLoaded", () => {
+    const sidebar = document.querySelector('.sidebar');
+    sidebar.classList.remove('open'); // Ensure the sidebar starts closed
+});
+
+document.addEventListener("DOMContentLoaded", () => {
     const sidebar = document.getElementById("sidebar");
     const toggleButton = document.getElementById("toggleSidebar");
     const mainContent = document.getElementById("mainContent");
