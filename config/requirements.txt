@@ -1,8 +1,39 @@
-fastapi==0.115.10
-keyboard==0.13.5
-numpy==2.2.3
-ollama==0.4.7
-pydantic==2.10.6
-sentence_transformers==3.4.1
-torch==2.2.1+cu118
-uvicorn==0.34.0
+# FastAPI framework for building APIs
+fastapi
+
+# Keyboard library for handling keyboard events
+keyboard
+
+# NumPy for numerical computations
+numpy
+
+# Ollama library for AI model integration
+ollama
+
+# Pydantic for data validation and settings management
+pydantic
+
+# Sentence Transformers for embedding generation
+sentence_transformers
+
+# Transformers library for state-of-the-art NLP models
+transformers>=4.34.0
+
+# PyTorch for machine learning and deep learning
+# Use the specific wheel for PyTorch with CUDA 12.6
+https://download.pytorch.org/whl/cu126/torch-2.6.0%2Bcu126-cp313-cp313-win_amd64.whl
+
+# TorchAudio for audio processing tasks
+# Use the specific wheel for TorchAudio with CUDA 12.6
+https://download.pytorch.org/whl/cu126/torchaudio-2.6.0%2Bcu126-cp313-cp313-win_amd64.whl
+
+# TorchVision for image processing tasks
+# Use the specific wheel for TorchVision with CUDA 12.6
+https://download.pytorch.org/whl/cu126/torchvision-0.21.0%2Bcu126-cp313-cp313-win_amd64.whl
+
+# Uvicorn for running ASGI applications
+uvicorn
+
+# Requests library for making HTTP requests
+requests
+
