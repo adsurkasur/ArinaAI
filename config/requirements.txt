@@ -21,15 +21,15 @@ transformers>=4.34.0
 
 # PyTorch for machine learning and deep learning
 # Use the specific wheel for PyTorch with CUDA 12.6
-https://download.pytorch.org/whl/cu126/torch-2.6.0%2Bcu126-cp313-cp313-win_amd64.whl
+https://download.pytorch.org/whl/cu126/torch-2.6.0%2Bcu126-cp311-cp311-win_amd64.whl
 
 # TorchAudio for audio processing tasks
 # Use the specific wheel for TorchAudio with CUDA 12.6
-https://download.pytorch.org/whl/cu126/torchaudio-2.6.0%2Bcu126-cp313-cp313-win_amd64.whl
+https://download.pytorch.org/whl/cu126/torchaudio-2.6.0%2Bcu126-cp311-cp311-win_amd64.whl
 
 # TorchVision for image processing tasks
 # Use the specific wheel for TorchVision with CUDA 12.6
-https://download.pytorch.org/whl/cu126/torchvision-0.21.0%2Bcu126-cp313-cp313-win_amd64.whl
+https://download.pytorch.org/whl/cu126/torchvision-0.21.0%2Bcu126-cp311-cp311-win_amd64.whl
 
 # Uvicorn for running ASGI applications
 uvicorn
@@ -37,3 +37,5 @@ uvicorn
 # Requests library for making HTTP requests
 requests
 
+# Spacy for natural language processing tasks
+spacy
