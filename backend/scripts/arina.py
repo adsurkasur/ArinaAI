@@ -23,9 +23,13 @@ from backend.core.feedback_management import save_feedback, analyze_feedback, ap
 def custom_warning_filter(message, category, filename, lineno, file=None, line=None):
     if re.search(r"Torch was not compiled with flash attention", str(message)):
         return  # Suppress this specific warning
-    warnings.defaultaction(message, category, filename, lineno, file, line)
+    # Use the original `warnings.showwarning` function to display other warnings
+    warnings._showwarning_orig(message, category, filename, lineno, file, line)
 
-warnings.showwarning = custom_warning_filter  # Apply the filter
+# Save the original `warnings.showwarning` function
+warnings._showwarning_orig = warnings.showwarning
+# Replace `warnings.showwarning` with the custom filter
+warnings.showwarning = custom_warning_filter
 
 # Ensure the database is initialized
 init_db()
@@ -116,7 +120,7 @@ def chat_with_arina():
             messages = apply_feedback_adjustments(messages)
 
             try:
-                response = ollama.chat(model='gemma2', messages=messages)
+                response = ollama.chat(model='gemma3', messages=messages)
                 arina_reply = response.get("message", {}).get("content", "").strip()
 
                 if not arina_reply:
