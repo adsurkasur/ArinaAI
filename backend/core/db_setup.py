@@ -12,6 +12,12 @@ logger = logging.getLogger(__name__)
 def init_db():
     """Initialize the database if it does not exist."""
     try:
+        # Ensure the database directory exists
+        db_dir = os.path.dirname(DB_PATH)
+        if not os.path.exists(db_dir):
+            os.makedirs(db_dir)
+            logger.info(f"Created database directory: {db_dir}")
+
         conn = sqlite3.connect(DB_PATH)
         cursor = conn.cursor()
 
@@ -72,7 +78,7 @@ def init_db():
     except Exception as e:
         logger.error(f"Unexpected error: {e}")
     finally:
-        if conn:
+        if 'conn' in locals() and conn:
             conn.close()
 
 def create_indexes():
